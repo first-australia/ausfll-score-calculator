@@ -1,4 +1,4 @@
-import { ScoreAnswer, Game, Mission, Score, ScoreError } from "../../index.d";
+import { ScoreAnswer, Game, Mission, Score, ScoreError } from "../types";
 import { FIRSTProgram, FIRSTSeason } from "../constants";
 import firebaseLinks from "../firebase.links";
 

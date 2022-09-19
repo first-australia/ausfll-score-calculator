@@ -8,7 +8,7 @@ import {
   ScoreError,
   ScoreResult,
   ScoreAnswer,
-} from "../index.d";
+} from "../src/types";
 import { Question } from "./Questions";
 import Table from "@material-ui/core/Table";
 import TableRow from "@material-ui/core/TableRow";

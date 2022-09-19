@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { GIsCategoricalScore } from "../src/extras";
-import { CategoricalScore, NumericScore, Score } from "../index.d";
+import { CategoricalScore, NumericScore, Score } from "../src/types";
 import TextField from "@material-ui/core/TextField";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";

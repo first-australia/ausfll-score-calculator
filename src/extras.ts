@@ -3,7 +3,7 @@ import CargoConnect from "./games/CargoConnect";
 import CityShaper from "./games/CityShaper";
 import RePlay from "./games/RePlay";
 import SuperPowered from "./games/SuperPowered";
-import { Score, NumericScore, CategoricalScore } from "../index.d";
+import { Score, NumericScore, CategoricalScore } from "./types";
 
 export const GIsNumericScore = (m: Score): m is NumericScore =>
   m.type === "numeric";
