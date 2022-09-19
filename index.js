@@ -24,7 +24,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-define("constants", ["require", "exports"], function (require, exports) {
+define("first-constants", ["require", "exports"], function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Seasons = exports.FIRSTSeason = exports.Programs = exports.FIRSTProgram = void 0;
@@ -57,7 +57,7 @@ define("constants", ["require", "exports"], function (require, exports) {
         FIRSTSeason.Energize,
     ];
 });
-define("types", ["require", "exports"], function (require, exports) {
+define("game-types", ["require", "exports"], function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
 });
@@ -104,7 +104,7 @@ define("firebase.links", ["require", "exports"], function (require, exports) {
     };
     exports.default = firebaseLinks;
 });
-define("games/CargoConnect", ["require", "exports", "firebase.links", "constants"], function (require, exports, firebase_links_1, constants_1) {
+define("games/CargoConnect", ["require", "exports", "firebase.links", "first-constants"], function (require, exports, firebase_links_1, first_constants_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     firebase_links_1 = __importDefault(firebase_links_1);
@@ -750,8 +750,8 @@ define("games/CargoConnect", ["require", "exports", "firebase.links", "constants
     };
     const CargoConnect = {
         name: "Cargo Connect",
-        program: constants_1.FIRSTProgram.FLL_CHALLENGE,
-        season: constants_1.FIRSTSeason.FirstForward,
+        program: first_constants_1.FIRSTProgram.FLL_CHALLENGE,
+        season: first_constants_1.FIRSTSeason.FirstForward,
         scores: questions,
         missions,
         answer,
@@ -760,7 +760,7 @@ define("games/CargoConnect", ["require", "exports", "firebase.links", "constants
     };
     exports.default = CargoConnect;
 });
-define("games/CityShaper", ["require", "exports", "constants"], function (require, exports, constants_2) {
+define("games/CityShaper", ["require", "exports", "first-constants"], function (require, exports, first_constants_2) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     const questions = [
@@ -1145,8 +1145,8 @@ define("games/CityShaper", ["require", "exports", "constants"], function (requir
     };
     const CityShaper = {
         name: "City Shaper",
-        program: constants_2.FIRSTProgram.FLL_CHALLENGE,
-        season: constants_2.FIRSTSeason.FirstLaunch,
+        program: first_constants_2.FIRSTProgram.FLL_CHALLENGE,
+        season: first_constants_2.FIRSTSeason.FirstLaunch,
         scores: questions,
         missions,
         answer,
@@ -1155,7 +1155,7 @@ define("games/CityShaper", ["require", "exports", "constants"], function (requir
     };
     exports.default = CityShaper;
 });
-define("games/RePlay", ["require", "exports", "constants"], function (require, exports, constants_3) {
+define("games/RePlay", ["require", "exports", "first-constants"], function (require, exports, first_constants_3) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     const questions = [
@@ -1635,8 +1635,8 @@ define("games/RePlay", ["require", "exports", "constants"], function (require, e
     };
     const RePlay = {
         name: "RePlay",
-        program: constants_3.FIRSTProgram.FLL_CHALLENGE,
-        season: constants_3.FIRSTSeason.PlayMakers,
+        program: first_constants_3.FIRSTProgram.FLL_CHALLENGE,
+        season: first_constants_3.FIRSTSeason.PlayMakers,
         scores: questions,
         missions,
         answer,
@@ -1645,7 +1645,7 @@ define("games/RePlay", ["require", "exports", "constants"], function (require, e
     };
     exports.default = RePlay;
 });
-define("games/SuperPowered", ["require", "exports", "constants", "firebase.links"], function (require, exports, constants_4, firebase_links_2) {
+define("games/SuperPowered", ["require", "exports", "first-constants", "firebase.links"], function (require, exports, first_constants_4, firebase_links_2) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     firebase_links_2 = __importDefault(firebase_links_2);
@@ -2121,8 +2121,8 @@ define("games/SuperPowered", ["require", "exports", "constants", "firebase.links
     };
     const SuperPowered = {
         name: "SuperPowered",
-        program: constants_4.FIRSTProgram.FLL_CHALLENGE,
-        season: constants_4.FIRSTSeason.Energize,
+        program: first_constants_4.FIRSTProgram.FLL_CHALLENGE,
+        season: first_constants_4.FIRSTSeason.Energize,
         scores: questions,
         missions,
         answer,
@@ -2145,7 +2145,7 @@ define("extras", ["require", "exports", "games/CargoConnect", "games/CityShaper"
     exports.GIsCategoricalScore = GIsCategoricalScore;
     exports.Games = [SuperPowered_1.default, CargoConnect_1.default, RePlay_1.default, CityShaper_1.default];
 });
-define("index", ["require", "exports", "games/CargoConnect", "games/CityShaper", "games/RePlay", "games/SuperPowered", "extras", "constants"], function (require, exports, CargoConnect_2, CityShaper_2, RePlay_2, SuperPowered_2, Extras, Constants) {
+define("index", ["require", "exports", "games/CargoConnect", "games/CityShaper", "games/RePlay", "games/SuperPowered", "extras", "first-constants"], function (require, exports, CargoConnect_2, CityShaper_2, RePlay_2, SuperPowered_2, Extras, FIRSTConstants) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     CargoConnect_2 = __importDefault(CargoConnect_2);
@@ -2153,9 +2153,9 @@ define("index", ["require", "exports", "games/CargoConnect", "games/CityShaper",
     RePlay_2 = __importDefault(RePlay_2);
     SuperPowered_2 = __importDefault(SuperPowered_2);
     Extras = __importStar(Extras);
-    Constants = __importStar(Constants);
-    module.exports = Object.assign(Object.assign({ CargoConnect: CargoConnect_2.default,
+    FIRSTConstants = __importStar(FIRSTConstants);
+    exports.default = Object.assign(Object.assign({ CargoConnect: CargoConnect_2.default,
         CityShaper: CityShaper_2.default,
         RePlay: RePlay_2.default,
-        SuperPowered: SuperPowered_2.default }, Extras), Constants);
+        SuperPowered: SuperPowered_2.default }, Extras), FIRSTConstants);
 });

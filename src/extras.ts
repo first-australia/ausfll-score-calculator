@@ -1,9 +1,9 @@
-import { FIRSTSeason, FIRSTProgram } from "./constants";
+import { FIRSTSeason, FIRSTProgram } from "./first-constants";
 import CargoConnect from "./games/CargoConnect";
 import CityShaper from "./games/CityShaper";
 import RePlay from "./games/RePlay";
 import SuperPowered from "./games/SuperPowered";
-import { Score, NumericScore, CategoricalScore } from "./types";
+import { Score, NumericScore, CategoricalScore } from "./game-types";
 
 export const GIsNumericScore = (m: Score): m is NumericScore =>
   m.type === "numeric";

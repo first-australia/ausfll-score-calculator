@@ -1,5 +1,5 @@
-import { ScoreAnswer, Game, Mission, Score, ScoreError } from "../types";
-import { FIRSTProgram, FIRSTSeason } from "../constants";
+import { ScoreAnswer, Game, Mission, Score, ScoreError } from "../game-types";
+import { FIRSTProgram, FIRSTSeason } from "../first-constants";
 
 const questions: Score[] = [
   {

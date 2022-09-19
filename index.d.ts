@@ -1,4 +1,4 @@
-declare module "constants" {
+declare module "first-constants" {
     export enum FIRSTProgram {
         FLL_CHALLENGE = "FLL_CHALLENGE",
         FLL_EXPLORE = "FLL_EXPLORE",
@@ -15,8 +15,8 @@ declare module "constants" {
     }
     export const Seasons: FIRSTSeason[];
 }
-declare module "types" {
-    import { FIRSTSeason, FIRSTProgram } from "constants";
+declare module "game-types" {
+    import { FIRSTSeason, FIRSTProgram } from "first-constants";
     export type ScoreAnswer = {
         id: string;
         answer: string;
@@ -120,30 +120,46 @@ declare module "firebase.links" {
     export default firebaseLinks;
 }
 declare module "games/CargoConnect" {
-    import { Game } from "types";
+    import { Game } from "game-types";
     const CargoConnect: Game;
     export default CargoConnect;
 }
 declare module "games/CityShaper" {
-    import { Game } from "types";
+    import { Game } from "game-types";
     const CityShaper: Game;
     export default CityShaper;
 }
 declare module "games/RePlay" {
-    import { Game } from "types";
+    import { Game } from "game-types";
     const RePlay: Game;
     export default RePlay;
 }
 declare module "games/SuperPowered" {
-    import { Game } from "types";
+    import { Game } from "game-types";
     const SuperPowered: Game;
     export default SuperPowered;
 }
 declare module "extras" {
-    import { Score, NumericScore, CategoricalScore } from "types";
+    import { Score, NumericScore, CategoricalScore } from "game-types";
     export const GIsNumericScore: (m: Score) => m is NumericScore;
     export const GIsCategoricalScore: (m: Score) => m is CategoricalScore;
-    export const Games: readonly [import("types").Game, import("types").Game, import("types").Game, import("types").Game];
+    export const Games: readonly [import("game-types").Game, import("game-types").Game, import("game-types").Game, import("game-types").Game];
     export type GameType = typeof Games[number];
 }
-declare module "index" { }
+declare module "index" {
+    import * as FIRSTConstants from "first-constants";
+    const _default: {
+        FIRSTProgram: typeof FIRSTConstants.FIRSTProgram;
+        Programs: FIRSTConstants.FIRSTProgram[];
+        FIRSTSeason: typeof FIRSTConstants.FIRSTSeason;
+        Seasons: FIRSTConstants.FIRSTSeason[];
+        GIsNumericScore: (m: import("game-types").Score) => m is import("game-types").NumericScore;
+        GIsCategoricalScore: (m: import("game-types").Score) => m is import("game-types").CategoricalScore;
+        Games: readonly [import("game-types").Game, import("game-types").Game, import("game-types").Game, import("game-types").Game];
+        CargoConnect: import("game-types").Game;
+        CityShaper: import("game-types").Game;
+        RePlay: import("game-types").Game;
+        SuperPowered: import("game-types").Game;
+    };
+    export default _default;
+}

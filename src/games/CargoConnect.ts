@@ -1,6 +1,6 @@
-import { ScoreAnswer, Game, Mission, Score, ScoreError } from "../types";
+import { ScoreAnswer, Game, Mission, Score, ScoreError } from "../game-types";
 import firebaseLinks from "../firebase.links";
-import { FIRSTProgram, FIRSTSeason } from "../constants";
+import { FIRSTProgram, FIRSTSeason } from "../first-constants";
 
 const NUM_CONTAINERS = 8;
 const NUM_CIRCLES = 6;

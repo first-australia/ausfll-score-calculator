@@ -1,4 +1,4 @@
-import { FIRSTSeason, FIRSTProgram } from "./constants";
+import { FIRSTSeason, FIRSTProgram } from "./first-constants";
 
 export type ScoreAnswer = { id: string; answer: string };
 
