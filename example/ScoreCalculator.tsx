@@ -1,15 +1,14 @@
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import React, { Fragment, useEffect, useState } from "react";
+import { GameType, GIsNumericScore } from "../src/extras";
 import {
   CategoricalScoreResult,
-  GameType,
-  GIsNumericScore,
   NumericScoreResult,
   Score,
   ScoreError,
   ScoreResult,
   ScoreAnswer,
-} from "../src/game";
+} from "../index.d";
 import { Question } from "./Questions";
 import Table from "@material-ui/core/Table";
 import TableRow from "@material-ui/core/TableRow";

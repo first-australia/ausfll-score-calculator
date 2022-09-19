@@ -1,9 +1,3 @@
-import { FIRSTSeason, FIRSTProgram } from "./constants";
-import CargoConnect from "./games/CargoConnect";
-import CityShaper from "./games/CityShaper";
-import RePlay from "./games/RePlay";
-import SuperPowered from "./games/SuperPowered";
-
 export type ScoreAnswer = { id: string; answer: string };
 
 type ScoreType = "numeric" | "categorical";
@@ -46,11 +40,6 @@ export type ScoreError = {
   message: string;
 };
 
-export const GIsNumericScore = (m: Score): m is NumericScore =>
-  m.type === "numeric";
-export const GIsCategoricalScore = (m: Score): m is CategoricalScore =>
-  m.type === "categorical";
-
 export type ScoreSheet = {
   /** ID of "Compete" instance */
   compete: string;
@@ -79,7 +68,3 @@ export type Game = {
   validate: (R: ScoreAnswer[]) => ScoreError[];
   score: (R: ScoreAnswer[]) => number;
 };
-
-export const Games = [SuperPowered, CargoConnect, RePlay, CityShaper] as const;
-
-export type GameType = typeof Games[number];

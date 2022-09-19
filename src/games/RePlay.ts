@@ -1,4 +1,4 @@
-import { ScoreAnswer, Game, Mission, Score, ScoreError } from "../game";
+import { ScoreAnswer, Game, Mission, Score, ScoreError } from "../../index.d";
 import { FIRSTProgram, FIRSTSeason } from "../constants";
 
 const questions: Score[] = [

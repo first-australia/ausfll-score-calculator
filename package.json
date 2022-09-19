@@ -1,8 +1,9 @@
 {
   "name": "ausfll-score-calculator",
-  "version": "22.0.1",
+  "version": "22.0.2",
   "description": "FIRST LEGO League score calculator by the Australian Head Referee",
-  "main": "index.ts",
+  "main": "index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
