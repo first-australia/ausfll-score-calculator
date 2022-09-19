@@ -5,7 +5,7 @@ import {
   GIsCategoricalScore,
   NumericScore,
   Score,
-} from "../src/game.types";
+} from "../src/game";
 import TextField from "@material-ui/core/TextField";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";

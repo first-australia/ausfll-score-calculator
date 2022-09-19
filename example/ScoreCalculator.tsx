@@ -9,7 +9,7 @@ import {
   ScoreError,
   ScoreResult,
   ScoreAnswer,
-} from "../src/game.types";
+} from "../src/game";
 import { Question } from "./Questions";
 import Table from "@material-ui/core/Table";
 import TableRow from "@material-ui/core/TableRow";

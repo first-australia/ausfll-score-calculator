@@ -20,7 +20,8 @@ export enum FIRSTSeason {
   Energize = 20222023,
 }
 export const Seasons = [
-  // FIRSTSeason.PlayMakers,
+  FIRSTSeason.FirstLaunch,
+  FIRSTSeason.PlayMakers,
   FIRSTSeason.FirstForward,
   FIRSTSeason.Energize,
 ];

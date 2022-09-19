@@ -1,4 +1,4 @@
-import { FIRSTSeason, FIRSTProgram } from "./common.types";
+import { FIRSTSeason, FIRSTProgram } from "./constants";
 import CargoConnect from "./games/CargoConnect";
 import CityShaper from "./games/CityShaper";
 import RePlay from "./games/RePlay";
