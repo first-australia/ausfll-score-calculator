@@ -2,7 +2,7 @@ import { ScoreAnswer, Game, Mission, Score, ScoreError } from "../game-types";
 import { FIRSTProgram, FIRSTSeason } from "../first-constants";
 import firebaseLinks from "../firebase.links";
 
-const NUM_ENERGY = 12;
+const NUM_ENERGY = 20;
 
 const questions: Score[] = [
   {
@@ -186,6 +186,14 @@ const questions: Score[] = [
     labelShort: "# Energy?",
     options: ["0", "1", "2", "3"],
     defaultValue: "0",
+    type: "categorical",
+  },
+  {
+    id: "m14b",
+    label: "Has the mini dinosaur toy been released?",
+    labelShort: "Mini dino?",
+    options: ["No", "Yes"],
+    defaultValue: "No",
     type: "categorical",
   },
   {
