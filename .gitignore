@@ -1,2 +1,11 @@
+/dist
+/node_modules
+*/dist/
+./packages/server/dist/
+./packages/common/build/
+*/build/
+*/common/dist/
+./packages/common/dist/*
+./packages/common/dist
 node_modules
-dist
+.env

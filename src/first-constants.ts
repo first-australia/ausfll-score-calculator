@@ -1,27 +1,16 @@
-export enum FIRSTProgram {
-  FLL_CHALLENGE = "FLL_CHALLENGE",
-  FLL_EXPLORE = "FLL_EXPLORE",
-  FLL_DISCOVER = "FLL_DISCOVER",
-  FTC = "FIRST_TECH_CHALLENGE",
-  FRC = "FIRST_ROBOTICS_COMPETITION",
-}
-export const Programs = [
-  FIRSTProgram.FLL_DISCOVER,
-  FIRSTProgram.FLL_EXPLORE,
-  FIRSTProgram.FLL_CHALLENGE,
-  FIRSTProgram.FTC,
-  FIRSTProgram.FRC,
-];
+export const programs = [
+  'FLL_CHALLENGE',
+  'FLL_EXPLORE',
+  'FLL_DISCOVER',
+  'FIRST_TECH_CHALLENGE',
+  'FIRST_ROBOTICS_COMPETITION',
+] as const;
 
-export enum FIRSTSeason {
-  FirstLaunch = 20192020,
-  PlayMakers = 20202021,
-  FirstForward = 20212022,
-  Energize = 20222023,
-}
-export const Seasons = [
-  FIRSTSeason.FirstLaunch,
-  FIRSTSeason.PlayMakers,
-  FIRSTSeason.FirstForward,
-  FIRSTSeason.Energize,
-];
+export const seasons = [
+  20192020, 20202021, 20212022, 20222023, 20232024,
+] as const;
+
+export const CURRENT_SEASON = 20232024;
+
+export type Program = (typeof programs)[number];
+export type Season = (typeof seasons)[number];

@@ -1,8 +1,8 @@
-import { FIRSTSeason, FIRSTProgram } from "./first-constants";
+import { Season } from 'first-constants';
 
 export type ScoreAnswer = { id: string; answer: string };
 
-type ScoreType = "numeric" | "categorical";
+type ScoreType = 'numeric' | 'categorical';
 
 interface IScore {
   id: string;
@@ -13,14 +13,14 @@ interface IScore {
 }
 
 export type NumericScore = IScore & {
-  type: "numeric";
+  type: 'numeric';
   min: number;
   max: number;
   defaultValue: number;
 };
 
 export type CategoricalScore = IScore & {
-  type: "categorical";
+  type: 'categorical';
   options: string[];
   defaultValue: string;
 };
@@ -38,7 +38,7 @@ export type CategoricalScoreResult = CategoricalScore & {
 export type ScoreResult = NumericScoreResult | CategoricalScoreResult;
 
 export type ScoreError = {
-  id?: Score["id"];
+  id?: Score['id'];
   message: string;
 };
 
@@ -62,11 +62,11 @@ export type Mission = {
 
 export type Game = {
   name: string;
-  season: FIRSTSeason;
-  program: FIRSTProgram.FLL_CHALLENGE;
+  season: Season;
+  program: 'FLL_CHALLENGE';
   scores: Score[];
   missions: Mission[];
-  answer: (res: ScoreAnswer[], q: string) => ScoreAnswer["answer"] | undefined;
+  answer: (res: ScoreAnswer[], q: string) => ScoreAnswer['answer'] | undefined;
   validate: (R: ScoreAnswer[]) => ScoreError[];
   score: (R: ScoreAnswer[]) => number;
 };
