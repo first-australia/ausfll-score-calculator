@@ -200,7 +200,7 @@ const questions: Score[] = [
     label: 'Number of experts at least partly in their target destination?',
     labelShort: 'Experts?',
     options: ['0', '1', '2', '3', '4', '5'],
-    defaultValue: '5',
+    defaultValue: '0',
     type: 'categorical',
   },
   {
