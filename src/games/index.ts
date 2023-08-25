@@ -16,5 +16,5 @@ const games: {
   [20232024]: masterPiece,
 };
 
-export { cityShaper, rePlay, superPowered, cargoConnect };
+export { cityShaper, rePlay, superPowered, cargoConnect, masterPiece };
 export default games;

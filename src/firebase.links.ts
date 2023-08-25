@@ -8,7 +8,6 @@ const missionPics: {
 } = {
   [20192020]: {},
   [20202021]: {},
-  [20232024]: {},
   [20212022]: {
     m00: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2Fcargo_connect%2Fm00.jpg?alt=media&token=dc5d50dc-c85b-4495-994e-3f74458f619b',
     m01: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2Fcargo_connect%2Fm01.png?alt=media&token=dc4b6232-6970-46e9-9364-10816c2097a5',
@@ -48,5 +47,23 @@ const missionPics: {
     m15: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2Fsuperpowered%2Fsp_m15.png?alt=media&token=49236090-5ad9-415c-8c77-e40c66194595',
     m16: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2Fsuperpowered%2Fsp_m16.png?alt=media&token=3b6b59d3-c93a-4f03-852d-ac8b66216320',
   },
+  [20232024]: {
+    m01: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2Fmasterpiece%2Fm01.png?alt=media&token=7eeb7bcc-66c4-41ef-9179-580d1a1bd235',
+    m02: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2Fmasterpiece%2Fm02.png?alt=media&token=a5a4cb5d-b15c-44ff-a39f-9eba82f01f54',
+    m03: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2Fmasterpiece%2Fm03.png?alt=media&token=b740de59-8f3b-4603-a452-24128c318ae5',
+    m04: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2Fmasterpiece%2Fm04.png?alt=media&token=949eecda-c4ef-4408-a29f-b0f57ebfc5a6',
+    m05: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2Fmasterpiece%2Fm05.png?alt=media&token=6b13a06b-c3d6-49c8-a5b7-def9a849dc63',
+    m06: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2Fmasterpiece%2Fm06.png?alt=media&token=ebe651f8-85e8-4bb0-9572-1082a19e7c77',
+    m07: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2Fmasterpiece%2Fm07.png?alt=media&token=8b2e9c32-f422-4d01-84b2-f2ee6d2ca544',
+    m08: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2Fmasterpiece%2Fm08.png?alt=media&token=375e673c-345b-494f-b83a-82ae5de42b6d',
+    m09: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2Fmasterpiece%2Fm09.png?alt=media&token=b8b63278-d844-494e-aea1-a39878528bb4',
+    m10: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2Fmasterpiece%2Fm10.png?alt=media&token=37fad34e-f795-429d-b478-d0bc5cfda77b',
+    m11: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2Fmasterpiece%2Fm11.png?alt=media&token=99f4bea0-094c-4b7f-b3c9-99472509828a',
+    m12: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2Fmasterpiece%2Fm12.png?alt=media&token=9ed9d7e7-5421-4d0b-8e91-8b10db30b093',
+    m13: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2Fmasterpiece%2Fm13.png?alt=media&token=a6bab50e-75d5-46e4-8e30-b674bf8a3e79',
+    m14: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2Fmasterpiece%2Fm14.png?alt=media&token=128312e9-391d-4a05-a80d-1b2e1860ce6e',
+    m15: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2Fmasterpiece%2Fm15.png?alt=media&token=4a82c201-b1fa-49bc-a2d9-94eee1c186a8',
+    m16: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2Fmasterpiece%2Fm16.png?alt=media&token=02e50c9a-6847-47e5-ba09-a20b8ef9ff66'
+  }
 };
 export default missionPics;

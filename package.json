@@ -27,7 +27,7 @@
     "build": "tsc -p tsconfig-mjs.json && tsc -p tsconfig-cjs.json && tsc -p tsconfig-types.json",
     "postbuild": "node ./scripts/set-common-packages.js",
     "start:dev": "tsc -p tsconfig-mjs.json --watch & tsc -p tsconfig-cjs.json --watch",
-    "typecheck": "tsc --noEmit"
+    "check": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
