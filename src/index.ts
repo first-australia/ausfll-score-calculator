@@ -1,16 +1,7 @@
-import CargoConnect from "./games/CargoConnect";
-import CityShaper from "./games/CityShaper";
-import RePlay from "./games/RePlay";
-import SuperPowered from "./games/SuperPowered";
-
-import * as Extras from "./extras";
-import * as FIRSTConstants from "./first-constants";
-
-export default {
-  CargoConnect,
-  CityShaper,
-  RePlay,
-  SuperPowered,
-  ...Extras,
-  ...FIRSTConstants,
-};
+export * from './game-types';
+export * from './games';
+export { default as games } from './games';
+export * from './extras';
+export * from './first-constants';
+export * from './firebase.links';
+export * from './functions';
