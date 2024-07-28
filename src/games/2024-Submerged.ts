@@ -248,6 +248,91 @@ const questions: Score[] = [
 
 const missions: Mission[] = [
   {
+    prefix: 'm00',
+    title: 'M00 - Equipment Inspection Bonus',
+    image: missionPics[SEASON].m00,
+  },
+  {
+    prefix: 'm01',
+    title: 'M01 - Coral Nursery',
+    image: missionPics[SEASON].m01,
+  },
+  {
+    prefix: 'm02',
+    title: 'M02 - Shark',
+    image: missionPics[SEASON].m02,
+  },
+  {
+    prefix: 'm03',
+    title: 'M03 - Coral Reef',
+    image: missionPics[SEASON].m03,
+  },
+  {
+    prefix: 'm04',
+    title: 'M04 - Scuba Diver',
+    image: missionPics[SEASON].m04,
+  },
+  {
+    prefix: 'm05',
+    title: 'M05 - Angler Fish',
+    image: missionPics[SEASON].m05,
+  },
+  {
+    prefix: 'm06',
+    title: 'M06 - Raise the Mast',
+    image: missionPics[SEASON].m06,
+  },
+  {
+    prefix: 'm07',
+    title: "M07 - Kraken's Treasure",
+    image: missionPics[SEASON].m07,
+  },
+  {
+    prefix: 'm08',
+    title: 'M08 - Artificial Habitat',
+    image: missionPics[SEASON].m08,
+  },
+  {
+    prefix: 'm09',
+    title: 'M09 - Unexpected Encounter',
+    image: missionPics[SEASON].m09,
+  },
+  {
+    prefix: 'm10',
+    title: 'M10 - Send Over the Submersible',
+    image: missionPics[SEASON].m10,
+  },
+  {
+    prefix: 'm11',
+    title: 'M11 - Sonar Discovery',
+    image: missionPics[SEASON].m11,
+  },
+  {
+    prefix: 'm12',
+    title: 'M12 - Feed the Whale',
+    image: missionPics[SEASON].m12,
+  },
+  {
+    prefix: 'm13',
+    title: 'M13 - Changing Shipping Lanes',
+    image: missionPics[SEASON].m13,
+  },
+  {
+    prefix: 'm14',
+    title: 'M14 - Sample Collection',
+    image: missionPics[SEASON].m14,
+  },
+  {
+    prefix: 'm15',
+    title: 'M15 - Research Vessel',
+    image: missionPics[SEASON].m15,
+  },
+  {
+    prefix: 'm16',
+    title: 'M16 - Precision Tokens',
+    image: missionPics[SEASON].m16,
+  },
+  {
     prefix: 'gp',
     title: 'Gracious Professionalism®',
   },
