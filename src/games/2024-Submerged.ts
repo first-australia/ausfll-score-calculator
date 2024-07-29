@@ -398,10 +398,10 @@ const validate = (answers: ScoreAnswer[]) => {
   const m14a = answers.find((r) => r.id === 'm14a')?.answer == 'Yes' ? 1 : 0;
   const m14b = answers.find((r) => r.id === 'm14b')?.answer == 'Yes' ? 1 : 0;
   const m14c = answers.find((r) => r.id === 'm14c')?.answer == 'Yes' ? 1 : 0;
-  const m14d = parseInt(answers.find((r) => r.id === 'm14d')?.answer ?? 0);
+  const m14d = parseInt(answers.find((r) => r.id === 'm14d')?.answer ?? '0');
 
   const m15MaxPossible = m07a + m14a + m14b + m14c + m14d;
-  const m15a = parseInt(answers.find((r) => r.id === 'm15a')?.answer ?? 0);
+  const m15a = parseInt(answers.find((r) => r.id === 'm15a')?.answer ?? '0');
 
   if (m15MaxPossible && m15a && m15a > m15MaxPossible) {
     errors.push({
