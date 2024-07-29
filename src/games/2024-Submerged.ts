@@ -357,13 +357,57 @@ const validate = (answers: ScoreAnswer[]) => {
 
   // game-specific validation
 
-  // If audiences have been delivered, then at least one target should be set
-  const m14a = answers.find((r) => r.id === 'm14a')?.answer;
-  const m14b = answers.find((r) => r.id === 'm14b')?.answer;
-  if (m14a && m14b && m14a !== '0' && m14b === '0') {
+  const m01a = answers.find((r) => r.id === 'm01a')?.answer;
+  const m01b = answers.find((r) => r.id === 'm01b')?.answer;
+  if (m01a && m01b && m01a === 'No' && m01b === 'Yes') {
     errors.push({
-      id: 'm14a,m14b',
-      message: 'Audiences delivered, but no destinations set!',
+      id: 'm1a,m1b',
+      message: "Coral tree can't be in it's holder without being raised!",
+    });
+  }
+
+  const m02a = answers.find((r) => r.id === 'm02a')?.answer;
+  const m02b = answers.find((r) => r.id === 'm02b')?.answer;
+  if (m02a && m02b && m02a === 'No' && m02b === 'Yes') {
+    errors.push({
+      id: 'm02a,m02b',
+      message: "Shark can't be in the habitat without leaving the cave",
+    });
+  }
+
+  const m04a = answers.find((r) => r.id === 'm04a')?.answer;
+  const m04b = answers.find((r) => r.id === 'm04b')?.answer;
+  if (m04a && m04b && m04a === 'No' && m04b === 'Yes') {
+    errors.push({
+      id: 'm04a,m04b',
+      message:
+        "Scuba diver can't be on the coral reef support without leaving the nursery",
+    });
+  }
+
+  const m09a = answers.find((r) => r.id === 'm09a')?.answer;
+  const m09b = answers.find((r) => r.id === 'm09b')?.answer;
+  if (m09a && m09b && m09a === 'No' && m09b === 'Yes') {
+    errors.push({
+      id: 'm09a,m09b',
+      message: "Unknown creature can't be in the seep if it's not released",
+    });
+  }
+
+  const m07a = answers.find((r) => r.id === 'm07a')?.answer == 'Yes' ? 1 : 0;
+  const m14a = answers.find((r) => r.id === 'm14a')?.answer == 'Yes' ? 1 : 0;
+  const m14b = answers.find((r) => r.id === 'm14b')?.answer == 'Yes' ? 1 : 0;
+  const m14c = answers.find((r) => r.id === 'm14c')?.answer == 'Yes' ? 1 : 0;
+  const m14d = parseInt(answers.find((r) => r.id === 'm14d')?.answer ?? 0);
+
+  const m15MaxPossible = m07a + m14a + m14b + m14c + m14d;
+  const m15a = parseInt(answers.find((r) => r.id === 'm15a')?.answer ?? 0);
+
+  if (m15MaxPossible && m15a && m15a > m15MaxPossible) {
+    errors.push({
+      id: 'm15a',
+      message:
+        'Samples in the cargo area is greater than samples released / moved',
     });
   }
 
@@ -401,6 +445,7 @@ const score = (answers: ScoreAnswer[]): number => {
       break;
     default:
       _score += 0;
+  }
 
   // M04 - 20 points for a, 20 points for b
   if (answer(answers, 'm04a') === 'Yes') _score += 20;
@@ -431,6 +476,7 @@ const score = (answers: ScoreAnswer[]): number => {
       break;
     default:
       _score += 0;
+  }
 
   // M09 - 20 points for a, 10 points for b
   if (answer(answers, 'm09a') === 'Yes') _score += 20;
@@ -463,6 +509,7 @@ const score = (answers: ScoreAnswer[]): number => {
       break;
     default:
       _score += 0;
+  }
 
   // M13 - 20 points for a
   if (answer(answers, 'm13a') === 'Yes') _score += 20;
@@ -471,8 +518,16 @@ const score = (answers: ScoreAnswer[]): number => {
   if (answer(answers, 'm14a') === 'Yes') _score += 5;
   if (answer(answers, 'm14b') === 'Yes') _score += 10;
   if (answer(answers, 'm14c') === 'Yes') _score += 10;
-  if (answer(answers, 'm14d') === 'Yes') _score += 20;
-  if (answer(answers, 'm14e') === 'Yes') _score += 10;
+  switch (answer(answers, 'm14d')) {
+    case '1':
+      _score += 20;
+      break;
+    case '2':
+      _score += 30;
+      break;
+    default:
+      _score += 0;
+  }
 
   // M15 - 5 each for a, 20 for b
   switch (answer(answers, 'm15a')) {
