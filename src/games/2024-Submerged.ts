@@ -378,157 +378,74 @@ const score = (answers: ScoreAnswer[]): number => {
   // M00
   if (answer(answers, 'm00a') === 'Yes') _score += 20;
 
-  // M01 - 20 points if achieved
+  // M01 - 20 points for a, 10 points for b, 20 points for c
   if (answer(answers, 'm01a') === 'Yes') _score += 20;
+  if (answer(answers, 'm01b') === 'Yes') _score += 10;
+  if (answer(answers, 'm01c') === 'Yes') _score += 20;
 
-  // M02 - 10 points per level
-  const matching = answer(answers, 'm02b') === 'Yes';
-  switch (answer(answers, 'm02a')) {
-    case 'Blue':
-      _score += 10 + (matching ? 20 : 0);
+  // M02 - 20 points for a, 10 points for b
+  if (answer(answers, 'm02a') === 'Yes') _score += 20;
+  if (answer(answers, 'm02b') === 'Yes') _score += 10;
+
+  // M03 - 20 points for a, 5 each for b
+  if (answer(answers, 'm03a') === 'Yes') _score += 20;
+  switch (answer(answers, 'm03b')) {
+    case '1':
+      _score += 10;
       break;
-    case 'Pink':
-      _score += 20 + (matching ? 30 : 0);
+    case '2':
+      _score += 20;
       break;
-    case 'Orange':
-      _score += 30 + (matching ? 10 : 0);
+    case '3':
+      _score += 30;
       break;
     default:
       _score += 0;
-  }
 
-  // M03 - 20 points if Yes
-  if (answer(answers, 'm03a') === 'Yes') _score += 20;
-
-  // M04 - 10 points for a, 20 points for b
-  if (answer(answers, 'm04a') === 'Yes') {
-    if (answer(answers, 'm04b') === 'Yes') _score += 20;
-    _score += 10;
-  }
+  // M04 - 20 points for a, 20 points for b
+  if (answer(answers, 'm04a') === 'Yes') _score += 20;
+  if (answer(answers, 'm04b') === 'Yes') _score += 20;
 
   // M05 - 30 points if Yes
   if (answer(answers, 'm05a') === 'Yes') _score += 30;
 
-  // M06 - 10 points each
-  if (answer(answers, 'm06a') === 'Yes') _score += 10;
-  if (answer(answers, 'm06b') === 'Yes') _score += 10;
+  // M06 - 30 points if Yes
+  if (answer(answers, 'm06a') === 'Yes') _score += 30;
 
   // M07 - 20 points if Yes
   if (answer(answers, 'm07a') === 'Yes') _score += 20;
 
   // M08 - 10 points per level
   switch (answer(answers, 'm08a')) {
-    case 'Dark blue':
+    case '1':
       _score += 10;
       break;
-    case 'Dark & medium blue':
+    case '2':
       _score += 20;
       break;
-    case 'Dark, medium & light blue':
+    case '3':
       _score += 30;
+      break;
+    case '4':
+      _score += 40;
       break;
     default:
       _score += 0;
-  }
 
-  // M09 - 10 points each
-  if (answer(answers, 'm09a') === 'Yes') _score += 10;
+  // M09 - 20 points for a, 10 points for b
+  if (answer(answers, 'm09a') === 'Yes') _score += 20;
   if (answer(answers, 'm09b') === 'Yes') _score += 10;
 
-  // M10 - 10 points each
-  switch (answer(answers, 'm10a')) {
-    case '1':
-      _score += 10;
-      break;
-    case '2':
-      _score += 20;
-      break;
-    case '3':
-      _score += 30;
-      break;
-    default:
-      _score += 0;
-  }
+  // M10 - 30 points for a, 10 for b
+  if (answer(answers, 'm10a') === 'Yes') _score += 30;
+  if (answer(answers, 'm10b') === 'Yes') _score += 10;
 
-  // M11 - 10 points each
-  switch (answer(answers, 'm11a')) {
-    case 'Yellow':
-      _score += 10;
-      break;
-    case 'Green':
-      _score += 20;
-      break;
-    case 'Blue':
-      _score += 30;
-      break;
-    default:
-      _score += 0;
-  }
+  // M11 - 20 points for 1 whale, + 10 for two whales
+  if (answer(answers, 'm11a') === '1') _score += 20;
+  else if (answer(answers, 'm11a') === '2') _score += 30;
 
-  // M12 - 10 points for a, 30 points if a + b
-  if (answer(answers, 'm12a') === 'Yes') {
-    if (answer(answers, 'm12b') === 'Yes') _score += 20;
-    _score += 10;
-  }
-
-  // M13 - 10 points for a, 20 points for b
-  if (answer(answers, 'm13a') === 'Yes') _score += 10;
-  if (answer(answers, 'm13b') === 'Yes') _score += 20;
-
-  // M14 - 5 each for a, 5 each for b
-  switch (answer(answers, 'm14a')) {
-    case '1':
-      _score += 5;
-      break;
-    case '2':
-      _score += 10;
-      break;
-    case '3':
-      _score += 15;
-      break;
-    case '4':
-      _score += 20;
-      break;
-    case '5':
-      _score += 25;
-      break;
-    case '6':
-      _score += 30;
-      break;
-    case '7':
-      _score += 35;
-      break;
-    default:
-      _score += 0;
-  }
-  switch (answer(answers, 'm14b')) {
-    case '1':
-      _score += 5;
-      break;
-    case '2':
-      _score += 10;
-      break;
-    case '3':
-      _score += 15;
-      break;
-    case '4':
-      _score += 20;
-      break;
-    case '5':
-      _score += 25;
-      break;
-    case '6':
-      _score += 30;
-      break;
-    case '7':
-      _score += 35;
-      break;
-    default:
-      _score += 0;
-  }
-
-  // M15 - 10 each
-  switch (answer(answers, 'm15a')) {
+  // M12 - 10 points for each
+  switch (answer(answers, 'm12a')) {
     case '1':
       _score += 10;
       break;
@@ -546,7 +463,41 @@ const score = (answers: ScoreAnswer[]): number => {
       break;
     default:
       _score += 0;
+
+  // M13 - 20 points for a
+  if (answer(answers, 'm13a') === 'Yes') _score += 20;
+
+  // M14 - 5 each for a, 10 for b, c, 20 for d, 10 for e
+  if (answer(answers, 'm14a') === 'Yes') _score += 5;
+  if (answer(answers, 'm14b') === 'Yes') _score += 10;
+  if (answer(answers, 'm14c') === 'Yes') _score += 10;
+  if (answer(answers, 'm14d') === 'Yes') _score += 20;
+  if (answer(answers, 'm14e') === 'Yes') _score += 10;
+
+  // M15 - 5 each for a, 20 for b
+  switch (answer(answers, 'm15a')) {
+    case '1':
+      _score += 5;
+      break;
+    case '2':
+      _score += 10;
+      break;
+    case '3':
+      _score += 15;
+      break;
+    case '4':
+      _score += 20;
+      break;
+    case '5':
+      _score += 25;
+      break;
+    case '5':
+      _score += 30;
+      break;
+    default:
+      _score += 0;
   }
+  if (answer(answers, 'm15b') === 'Yes') _score += 20;
 
   // M16
   switch (answer(answers, 'm16a')) {
