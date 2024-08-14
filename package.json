@@ -1,6 +1,6 @@
 {
   "name": "ausfll-score-calculator",
-  "version": "23.1.1",
+  "version": "24.1.1",
   "description": "FIRST LEGO League score calculator by the Australian Head Referee",
   "main": "dist/cjs/index.js",
   "main:src": "src/index.ts",
@@ -31,12 +31,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fwestling/ausfll-score-calculator.git"
+    "url": "git+https://github.com/first-australia/ausfll-score-calculator.git"
   },
   "author": "Fred Westling",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fwestling/ausfll-score-calculator/issues"
+    "url": "https://github.com/first-australia/ausfll-score-calculator/issues"
   },
   "homepage": "https://github.com/fwestling/ausfll-score-calculator#readme",
   "devDependencies": {
