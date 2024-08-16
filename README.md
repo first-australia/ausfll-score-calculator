@@ -30,3 +30,7 @@ Game.score(/*...*/);
 `validate` and `score` require a complete list of `ScoreAnswer`. The best way to make sure this is complete is to convert `Game.scores: Score[]` to `ScoreAnswer` by adding an answer.
 
 See examples/ScoreCalculator.tsx for an example of this.
+
+## Development
+
+Remember to `yarn build` before you `npm publish`!
