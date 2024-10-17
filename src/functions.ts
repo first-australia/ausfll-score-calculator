@@ -11,7 +11,7 @@ export const answer = (res: ScoreAnswer[], q: Score['id']) => {
 export const nAnswer = (res: ScoreAnswer[], q: Score['id']): number => {
   try {
     const a = res.find((r) => r.id === q)?.answer;
-    if (a) return Number(a);
+    if (a) return Number.parseInt(a);
     else return 0;
   } catch (e: any) {
     return 0;
