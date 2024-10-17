@@ -70,7 +70,7 @@ const questions: Score[] = [
     label: 'Number of reef segments upright, out of home, touching mat',
     labelShort: 'Reef segments?',
     options: ['0', '1', '2', '3'],
-    defaultValue: '0',
+    defaultValue: '3',
     type: 'categorical',
   },
   {
