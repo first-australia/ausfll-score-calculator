@@ -435,13 +435,13 @@ const score = (answers: ScoreAnswer[]): number => {
   if (answer(answers, 'm03a') === 'Yes') _score += 20;
   switch (answer(answers, 'm03b')) {
     case '1':
-      _score += 5;
-      break;
-    case '2':
       _score += 10;
       break;
+    case '2':
+      _score += 20;
+      break;
     case '3':
-      _score += 15;
+      _score += 30;
       break;
     default:
       _score += 0;
