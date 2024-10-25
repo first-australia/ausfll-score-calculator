@@ -11,7 +11,7 @@ const questions: Score[] = [
   {
     id: 'm00a',
     label:
-      'All team equipment fits in one launch area and under 12 in. (305 mm)?',
+      'All team equipment fits in one launch area and under 12 in. (305 mm)? (note: 🚳 = no equipment constraint)',
     labelShort: 'Inspection?',
     options: ['No', 'Yes'],
     defaultValue: 'No',
@@ -254,7 +254,7 @@ const missions: Mission[] = [
   },
   {
     prefix: 'm01',
-    title: 'M01 - Coral Nursery',
+    title: 'M01 - Coral Nursery 🚳' ,
     image: missionPics[SEASON].m01,
   },
   {
@@ -264,7 +264,7 @@ const missions: Mission[] = [
   },
   {
     prefix: 'm03',
-    title: 'M03 - Coral Reef',
+    title: 'M03 - Coral Reef 🚳',
     image: missionPics[SEASON].m03,
   },
   {
@@ -279,17 +279,17 @@ const missions: Mission[] = [
   },
   {
     prefix: 'm06',
-    title: 'M06 - Raise the Mast',
+    title: 'M06 - Raise the Mast 🚳',
     image: missionPics[SEASON].m06,
   },
   {
     prefix: 'm07',
-    title: "M07 - Kraken's Treasure",
+    title: "M07 - Kraken's Treasure 🚳",
     image: missionPics[SEASON].m07,
   },
   {
     prefix: 'm08',
-    title: 'M08 - Artificial Habitat',
+    title: 'M08 - Artificial Habitat 🚳',
     image: missionPics[SEASON].m08,
   },
   {
@@ -299,7 +299,7 @@ const missions: Mission[] = [
   },
   {
     prefix: 'm10',
-    title: 'M10 - Send Over the Submersible',
+    title: 'M10 - Send Over the Submersible 🚳',
     image: missionPics[SEASON].m10,
   },
   {
@@ -309,7 +309,7 @@ const missions: Mission[] = [
   },
   {
     prefix: 'm12',
-    title: 'M12 - Feed the Whale',
+    title: 'M12 - Feed the Whale 🚳',
     image: missionPics[SEASON].m12,
   },
   {
@@ -324,7 +324,7 @@ const missions: Mission[] = [
   },
   {
     prefix: 'm15',
-    title: 'M15 - Research Vessel',
+    title: 'M15 - Research Vessel 🚳',
     image: missionPics[SEASON].m15,
   },
   {
