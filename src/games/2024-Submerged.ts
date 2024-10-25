@@ -546,11 +546,8 @@ const score = (answers: ScoreAnswer[]): number => {
     case '5':
       _score += 25;
       break;
-    case '5':
-      _score += 30;
-      break;
     case '6':
-      _score += 35;
+      _score += 30;
       break;
     default:
       _score += 0;
