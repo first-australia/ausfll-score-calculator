@@ -477,7 +477,7 @@ const score = (answers: ScoreAnswer[]): number => {
   // M15
   // Sites with a flag at least partly inside and touching the mat
   const siteFlags = nAnswer(answers, 'm15a');
-  _score += Math.max(Math.round(artefactsInForum), 3) * 10; // 10 points per site with a flag
+  _score += Math.max(Math.round(siteFlags), 3) * 10; // 10 points per site with a flag
 
   // M16
   switch (nAnswer(answers, 'm16a')) {
