@@ -2,14 +2,14 @@ import { Season } from 'first-constants';
 
 export type ScoreAnswer = { id: string; answer: string };
 
-type ScoreType = 'numeric' | 'categorical';
+type ScoreType = 'numeric' | 'categorical' | 'boolean';
 
 interface IScore {
   id: string;
   label: string;
   labelShort: string;
   type: ScoreType;
-  defaultValue: number | string;
+  defaultValue: number | string | boolean;
 }
 
 export type NumericScore = IScore & {
@@ -25,7 +25,12 @@ export type CategoricalScore = IScore & {
   defaultValue: string;
 };
 
-export type Score = NumericScore | CategoricalScore;
+export type BooleanScore = IScore & {
+  type: 'boolean';
+  defaultValue: boolean;
+};
+
+export type Score = NumericScore | CategoricalScore | BooleanScore;
 
 export type NumericScoreResult = NumericScore & {
   answer: string;
@@ -35,7 +40,14 @@ export type CategoricalScoreResult = CategoricalScore & {
   answer: string;
 };
 
-export type ScoreResult = NumericScoreResult | CategoricalScoreResult;
+export type BooleanScoreResult = BooleanScore & {
+  answer: boolean;
+};
+
+export type ScoreResult =
+  | NumericScoreResult
+  | CategoricalScoreResult
+  | BooleanScoreResult;
 
 export type ScoreError = {
   id?: Score['id'];
