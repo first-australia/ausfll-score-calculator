@@ -17,3 +17,12 @@ export const nAnswer = (res: ScoreAnswer[], q: Score['id']): number => {
     return 0;
   }
 };
+
+export const bAnswer = (res: ScoreAnswer[], q: Score['id']) => {
+  try {
+    const strAnswer = res.find((r) => r.id === q)?.answer;
+    return strAnswer === 'true' || strAnswer === 'Yes' || strAnswer === '1';
+  } catch (e: any) {
+    return '';
+  }
+};
