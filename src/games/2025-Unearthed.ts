@@ -472,12 +472,12 @@ const score = (answers: ScoreAnswer[]): number => {
   // M14
   // Artefacts touching the mat and at least partly in the forum
   const artefactsInForum = nAnswer(answers, 'm14a');
-  _score += Math.max(Math.round(artefactsInForum), 7) * 5; // 10 points per artefact in forum
+  _score += Math.min(Math.round(artefactsInForum), 7) * 5; // 10 points per artefact in forum
 
   // M15
   // Sites with a flag at least partly inside and touching the mat
   const siteFlags = nAnswer(answers, 'm15a');
-  _score += Math.max(Math.round(siteFlags), 3) * 10; // 10 points per site with a flag
+  _score += Math.min(Math.round(siteFlags), 3) * 10; // 10 points per site with a flag
 
   // M16
   switch (nAnswer(answers, 'm16a')) {
