@@ -4,33 +4,36 @@ export type ScoreAnswer = { id: string; answer: string };
 
 type ScoreType = 'numeric' | 'categorical' | 'boolean';
 
-interface IScore {
-  id: string;
+interface IScore<ID extends string = string> {
+  id: ID;
   label: string;
   labelShort: string;
   type: ScoreType;
   defaultValue: number | string | boolean;
 }
 
-export type NumericScore = IScore & {
+export type NumericScore<ID extends string = string> = IScore<ID> & {
   type: 'numeric';
   min: number;
   max: number;
   defaultValue: number;
 };
 
-export type CategoricalScore = IScore & {
+export type CategoricalScore<ID extends string = string> = IScore<ID> & {
   type: 'categorical';
   options: string[];
   defaultValue: string;
 };
 
-export type BooleanScore = IScore & {
+export type BooleanScore<ID extends string = string> = IScore<ID> & {
   type: 'boolean';
   defaultValue: boolean;
 };
 
-export type Score = NumericScore | CategoricalScore | BooleanScore;
+export type Score<ID extends string = string> =
+  | NumericScore<ID>
+  | CategoricalScore<ID>
+  | BooleanScore<ID>;
 
 export type NumericScoreResult = NumericScore & {
   answer: string;
