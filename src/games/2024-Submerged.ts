@@ -1,7 +1,13 @@
-import { ScoreAnswer, Game, Mission, Score, ScoreError } from '../game-types';
-import { Season } from '../first-constants';
-import missionPics from '../firebase.links';
-import { answer } from '../functions';
+import {
+  ScoreAnswer,
+  Game,
+  Mission,
+  Score,
+  ScoreError,
+} from '../game-types.js';
+import { Season } from '../first-constants.js';
+import missionPics from '../firebase.links.js';
+import { answer } from '../functions.js';
 
 const SEASON: Season = 20242025;
 
@@ -254,7 +260,7 @@ const missions: Mission[] = [
   },
   {
     prefix: 'm01',
-    title: 'M01 - Coral Nursery 🚳' ,
+    title: 'M01 - Coral Nursery 🚳',
     image: missionPics[SEASON].m01,
   },
   {

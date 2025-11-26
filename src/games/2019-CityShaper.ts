@@ -1,6 +1,12 @@
-import { ScoreAnswer, Game, Mission, Score, ScoreError } from '../game-types';
-import { Season } from '../first-constants';
-import { answer } from '../functions';
+import {
+  ScoreAnswer,
+  Game,
+  Mission,
+  Score,
+  ScoreError,
+} from '../game-types.js';
+import { Season } from '../first-constants.js';
+import { answer } from '../functions.js';
 
 const SEASON: Season = 20192020;
 

@@ -1,10 +1,15 @@
-import { BooleanScore, CategoricalScore, NumericScore, Score } from './game-types';
-import cityShaper from './games/2019-CityShaper';
-import rePlay from './games/2020-RePlay';
-import cargoConnect from './games/2021-CargoConnect';
-import superPowered from './games/2022-SuperPowered';
-import masterPiece from './games/2023-Masterpiece';
-import submerged from './games/2024-Submerged';
+import {
+  BooleanScore,
+  CategoricalScore,
+  NumericScore,
+  Score,
+} from './game-types.js';
+import cityShaper from './games/2019-CityShaper.js';
+import rePlay from './games/2020-RePlay.js';
+import cargoConnect from './games/2021-CargoConnect.js';
+import superPowered from './games/2022-SuperPowered.js';
+import masterPiece from './games/2023-Masterpiece.js';
+import submerged from './games/2024-Submerged.js';
 
 export const isNumericScore = (m: Score): m is NumericScore =>
   m.type === 'numeric';
