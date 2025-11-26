@@ -1,4 +1,4 @@
-import { Season } from 'first-constants';
+import { Season } from 'first-constants.js';
 
 export type ScoreAnswer = { id: string; answer: string };
 

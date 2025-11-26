@@ -1,7 +1,13 @@
-import { ScoreAnswer, Game, Mission, Score, ScoreError } from '../game-types';
-import missionPics from '../firebase.links';
-import { Season } from 'first-constants';
-import { answer, nAnswer } from '../functions';
+import {
+  ScoreAnswer,
+  Game,
+  Mission,
+  Score,
+  ScoreError,
+} from '../game-types.js';
+import missionPics from '../firebase.links.js';
+import { Season } from 'first-constants.js';
+import { answer, nAnswer } from '../functions.js';
 
 const SEASON: Season = 20212022;
 const NUM_CONTAINERS = 8;

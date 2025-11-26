@@ -1,4 +1,4 @@
-import { seasons } from 'first-constants';
+import { seasons } from 'first-constants.js';
 
 type Mission = `m${number}${number}`;
 

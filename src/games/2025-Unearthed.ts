@@ -1,7 +1,13 @@
-import missionPics from '../firebase.links';
-import { Season } from '../first-constants';
-import { answer, bAnswer, nAnswer } from '../functions';
-import { Game, Mission, Score, ScoreAnswer, ScoreError } from '../game-types';
+import missionPics from '../firebase.links.js';
+import { Season } from '../first-constants.js';
+import { answer, bAnswer, nAnswer } from '../functions.js';
+import {
+  Game,
+  Mission,
+  Score,
+  ScoreAnswer,
+  ScoreError,
+} from '../game-types.js';
 
 const SEASON: Season = 20252026;
 

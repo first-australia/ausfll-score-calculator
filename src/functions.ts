@@ -1,4 +1,4 @@
-import { Score, ScoreAnswer } from 'game-types';
+import { Score, ScoreAnswer } from 'game-types.js';
 
 export const answer = (res: ScoreAnswer[], q: Score['id']) => {
   try {
