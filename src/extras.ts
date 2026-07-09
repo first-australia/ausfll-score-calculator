@@ -5,6 +5,7 @@ import cargoConnect from './games/2021-CargoConnect';
 import superPowered from './games/2022-SuperPowered';
 import masterPiece from './games/2023-Masterpiece';
 import submerged from './games/2024-Submerged';
+import unearthedAllianceChallenge from './games/2025-APOC-unearthed-alliance-challenge';
 
 export const isNumericScore = (m: Score): m is NumericScore =>
   m.type === 'numeric';
@@ -14,6 +15,7 @@ export const isBooleanScore = (m: Score): m is BooleanScore =>
   m.type === 'boolean';
 
 export const games = [
+  unearthedAllianceChallenge,
   submerged,
   masterPiece,
   superPowered,
