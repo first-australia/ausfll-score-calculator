@@ -26,6 +26,7 @@ const questionIds = [
   'm12b',
   'm13a',
   'm14a',
+  'm14c',
   'm14b',
   'm15a',
   'a1a',
@@ -34,7 +35,6 @@ const questionIds = [
   'm16a',
   'gpa',
   'gpb',
-  'gp',
 ] as const;
 
 type QuestionId = (typeof questionIds)[number];
@@ -158,10 +158,20 @@ const questions: Score<QuestionId>[] = [
   {
     id: 'm14a',
     label:
-      'Items delivered to the forum (brush, topsoil, milestone, and ores), touching the mat and at least partly in the forum?',
-    labelShort: 'Forum items?',
+      'Items delivered to the forum (brush, topsoil, and millstone), touching the mat and at least partly in the forum?',
+    labelShort: 'Forum items (5pt)?',
     min: 0,
-    max: 9,
+    max: 3,
+    defaultValue: 0,
+    type: 'numeric',
+  },
+  {
+    id: 'm14c',
+    label:
+      'Ores delivered to the forum, touching the mat and at least partly in the forum?',
+    labelShort: 'Forum ores?',
+    min: 0,
+    max: 3,
     defaultValue: 0,
     type: 'numeric',
   },
@@ -236,14 +246,6 @@ const questions: Score<QuestionId>[] = [
     max: 2,
     defaultValue: 0,
     type: 'numeric',
-  },
-  {
-    id: 'gp',
-    labelShort: 'GP',
-    label: 'Gracious Professionalism® displayed at the robot game table?',
-    options: ['2 - Developing', '3 - Accomplished', '4 - Exceeds'],
-    defaultValue: '3 - Accomplished',
-    type: 'categorical',
   },
 ];
 
@@ -342,29 +344,38 @@ const validate = (answers: ScoreAnswer[]) => {
   // game-specific validation
 
   // M14: delivered items can't exceed items actually released / moved.
-  // Deliverable items are the brush, topsoil, milestone, and ores.
-  const brush = answers.find((r) => r.id === 'm01b')?.answer == 'Yes' ? 1 : 0;
+  // The 5-point items are the brush, topsoil, and millstone; ores are separate.
+  const brush = bAnswer(answers, 'm01b') ? 1 : 0;
   const topsoil = answers.find((r) => r.id === 'm02a')?.answer != '0' ? 1 : 0;
-  const millstone =
-    answers.find((r) => r.id === 'm07a')?.answer == 'Yes' ? 1 : 0;
-  const ore = answers.find((r) => r.id === 'm06a')?.answer != '0' ? 1 : 0;
+  const millstone = bAnswer(answers, 'm07a') ? 1 : 0;
+  const oresReleased = nAnswer(answers, 'm06a');
 
-  const m14MaxPossible = brush + topsoil + millstone + ore;
+  const m14aMaxPossible = brush + topsoil + millstone;
   const m14a = parseInt(answers.find((r) => r.id === 'm14a')?.answer ?? '0');
+  const m14c = parseInt(answers.find((r) => r.id === 'm14c')?.answer ?? '0');
 
-  if (m14a > m14MaxPossible) {
+  if (m14a > m14aMaxPossible) {
     errors.push({
       id: 'm14a',
-      message: 'Items in the forum area is greater than items released / moved',
+      message:
+        'Forum items (brush/topsoil/millstone) exceed the number released / moved',
     });
   }
 
-  // M14b: artifact-bearing ores can't exceed items delivered to the forum.
+  // Ores delivered to the forum can't exceed ores released (M06).
+  if (m14c > oresReleased) {
+    errors.push({
+      id: 'm14c',
+      message: 'Ores in the forum exceed the number of ores released',
+    });
+  }
+
+  // M14b: artifact-bearing ores can't exceed the ores delivered to the forum.
   const m14b = parseInt(answers.find((r) => r.id === 'm14b')?.answer ?? '0');
-  if (m14b > m14a) {
+  if (m14b > m14c) {
     errors.push({
       id: 'm14b',
-      message: 'Artifact ores cannot exceed the number of items in the forum',
+      message: 'Artifact ores cannot exceed the number of ores in the forum',
     });
   }
 
@@ -430,8 +441,11 @@ const score = (answers: ScoreAnswer[]): number => {
   if (bAnswer(answers, 'm13a')) _score += 30;
 
   // M14 - Forum
+  // Brush / topsoil / millstone are 5 points each; ores are 10 points each.
   const forumItems = nAnswer(answers, 'm14a');
-  _score += Math.min(Math.round(forumItems), 9) * 10; // 10 points per delivered item
+  _score += Math.min(Math.round(forumItems), 3) * 5;
+  const forumOres = nAnswer(answers, 'm14c');
+  _score += Math.min(Math.round(forumOres), 3) * 10;
   // Artifact lottery: +20 for 1 artifact ore, +30 for 2.
   switch (nAnswer(answers, 'm14b')) {
     case 2:
