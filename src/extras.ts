@@ -1,4 +1,9 @@
-import { BooleanScore, CategoricalScore, NumericScore, Score } from './game-types';
+import {
+  BooleanScore,
+  CategoricalScore,
+  NumericScore,
+  Score,
+} from './game-types';
 import cityShaper from './games/2019-CityShaper';
 import rePlay from './games/2020-RePlay';
 import cargoConnect from './games/2021-CargoConnect';
@@ -6,6 +11,7 @@ import superPowered from './games/2022-SuperPowered';
 import masterPiece from './games/2023-Masterpiece';
 import submerged from './games/2024-Submerged';
 import unearthedAllianceChallenge from './games/2025-APOC-unearthed-alliance-challenge';
+import bioglow from 'games/2026-Bioglow';
 
 export const isNumericScore = (m: Score): m is NumericScore =>
   m.type === 'numeric';
@@ -22,6 +28,7 @@ export const games = [
   cargoConnect,
   rePlay,
   cityShaper,
+  bioglow,
 ] as const;
 
 export type GameType = (typeof games)[number];

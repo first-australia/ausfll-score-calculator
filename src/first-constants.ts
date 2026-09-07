@@ -7,10 +7,11 @@ export const programs = [
 ] as const;
 
 export const seasons = [
-  20192020, 20202021, 20212022, 20222023, 20232024, 20242025, 20252026
+  20192020, 20202021, 20212022, 20222023, 20232024, 20242025, 20252026,
+  20262027,
 ] as const;
 
-export const CURRENT_SEASON = 20252026;
+export const CURRENT_SEASON = 20262027;
 
 export type Program = (typeof programs)[number];
 export type Season = (typeof seasons)[number];
