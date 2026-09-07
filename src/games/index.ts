@@ -1,12 +1,13 @@
-import { seasons } from 'first-constants';
-import { Game } from '../game-types';
-import cityShaper from './2019-CityShaper';
-import rePlay from './2020-RePlay';
-import cargoConnect from './2021-CargoConnect';
-import superPowered from './2022-SuperPowered';
-import masterPiece from './2023-Masterpiece';
-import submerged from './2024-Submerged';
-import unearthed from './2025-Unearthed';
+import { seasons } from 'first-constants.js';
+import { Game } from '../game-types.js';
+import cityShaper from './2019-CityShaper.js';
+import rePlay from './2020-RePlay.js';
+import cargoConnect from './2021-CargoConnect.js';
+import superPowered from './2022-SuperPowered.js';
+import masterPiece from './2023-Masterpiece.js';
+import submerged from './2024-Submerged.js';
+import unearthed from './2025-Unearthed.js';
+import bioglow from './2026-Bioglow.js';
 
 const games: {
   [key in (typeof seasons)[number]]: Game;
@@ -18,6 +19,7 @@ const games: {
   [20232024]: masterPiece,
   [20242025]: submerged,
   [20252026]: unearthed,
+  [20262027]: bioglow,
 };
 
 export {
