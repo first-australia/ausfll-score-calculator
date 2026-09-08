@@ -128,31 +128,30 @@ export const editionMissionPics: {
 } = {
   [20262027]: {
     FLL_CHALLENGE_FOUNDERS: {
-      // m00: '',
-      // m01: '',
-      // m02: '',
-      // m03: '',
-      // m04: '',
-      // m05: '',
-      // m06: '',
-      // m07: '',
-      // m08: '',
-      // m09: '',
-      // m10: '',
-      // m11: '',
-      // m12: '',
-      // m13: '',
-      // m14: '',
-      // m15: '',
-      // m16: '', // Precision Tokens
+      // m01: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2F26-bioglow%2Fm01.png?alt=media&token=dbf81d00-c3ab-4e08-928c-1b058e07edd4',
+      // m02: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2F26-bioglow%2Fm02.png?alt=media&token=30578a90-a667-4471-8b02-fddcd60e755b',
+      // m03: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2F26-bioglow%2Fm03.png?alt=media&token=0eec6fde-5177-453b-90ee-85b79ae42ce0',
+      // m04: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2F26-bioglow%2Fm04.png?alt=media&token=352d4575-77c2-40f8-bf3e-9dafc3bef772',
+      // m05: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2F26-bioglow%2Fm05.png?alt=media&token=93726e4a-a275-4455-82f3-99c6c55205d9',
+      // m06: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2F26-bioglow%2Fm06.png?alt=media&token=5e9bf4a3-8e7d-43f9-b6e6-469cbc6cc506',
+      // m07: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2F26-bioglow%2Fm07.png?alt=media&token=ce9966a1-d71c-4d03-9bc0-42ebfc982eef',
+      // m08: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2F26-bioglow%2Fm08.png?alt=media&token=8a0174a7-a742-45de-a707-d5255425a00b',
+      // m09: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2F26-bioglow%2Fm09.png?alt=media&token=2f599b26-124e-43b2-be06-e07e2f9da05f',
+      // m10: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2F26-bioglow%2Fm10.png?alt=media&token=a8b165bd-c743-4ae2-8b0a-5e0f3b92aecc',
+      // m11: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2F26-bioglow%2Fm11.png?alt=media&token=ae6e547d-73ec-4f3d-90a2-73a6906d400c',
+      // m12: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2F26-bioglow%2Fm12.png?alt=media&token=b1dd6bb8-e863-41ac-bbee-548044797bdc',
+      // m13: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2F26-bioglow%2Fm13.png?alt=media&token=b501b2e6-94c5-485c-993d-00242801c689',
+      // m14: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2F26-bioglow%2Fm14.png?alt=media&token=e134a326-37c8-401f-9ad1-4e752922e972',
+      // m15: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2F26-bioglow%2Fm15.png?alt=media&token=c1f93bb6-1097-4048-808a-a3f00e358971',
+      // m16: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2F26-bioglow%2Fm16.png?alt=media&token=c1116481-e2e1-4616-953a-182416856420', // Precision Tokens
     },
     FLL_CHALLENGE_FUTURE: {
-      // m01: '',
-      // m02: '',
-      // m03: '',
-      // m04: '',
-      // m05: '',
-      // m06: '', // Level Up Challenge - Invasive Attack
+      // m01: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2F26-bioglow%2Ffuture%2Fm01.png?alt=media&token=667b6afd-91b8-47d4-8b6f-dfff9fdb35b3',
+      // m02: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2F26-bioglow%2Ffuture%2Fm02.png?alt=media&token=1f784f7e-3d42-47ee-b7fb-a5fede2074ff',
+      // m03: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2F26-bioglow%2Ffuture%2Fm03.png?alt=media&token=132f439e-6762-4979-a882-ba853e15e05f',
+      // m04: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2F26-bioglow%2Ffuture%2Fm04.png?alt=media&token=2e7f2a6b-7ace-4f0d-8a4f-eda2b42ef2f7',
+      // m05: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2F26-bioglow%2Ffuture%2Fm05.png?alt=media&token=179ee1f1-6218-4605-884a-71d2f220489d',
+      // m06: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2F26-bioglow%2Ffuture%2Fm06.png?alt=media&token=7e671c87-6d0d-4982-90fa-fcd5acde3ca5', // Level Up Challenge - Invasive Attack
     },
   },
 };
