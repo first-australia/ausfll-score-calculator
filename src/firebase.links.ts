@@ -1,10 +1,21 @@
-import { seasons } from 'first-constants';
+import { Program, seasons } from 'first-constants';
 
 type Mission = `m${number}${number}`;
 
-// type Links = {[key:string]: string};
+/** Mission prefix -> image URL, for a single scoresheet. */
+type MissionPics = { [key: Mission]: string };
+
+/**
+ * Seasons that run a single scoresheet, and so have one flat set of mission
+ * images. From 2026-2027 a season can carry several editions; those live in
+ * `editionMissionPics` instead.
+ */
+export const singleEditionSeasons = [
+  20192020, 20202021, 20212022, 20222023, 20232024, 20242025, 20252026,
+] as const;
+
 const missionPics: {
-  [key in (typeof seasons)[number]]: { [key: Mission]: string };
+  [key in (typeof singleEditionSeasons)[number]]: MissionPics;
 } = {
   [20192020]: {},
   [20202021]: {},
@@ -102,4 +113,57 @@ const missionPics: {
     m16: 'https://firebasestorage.googleapis.com/v0/b/firstaustralia-system.appspot.com/o/scoring%2Funearthed%2Fm16.png?alt=media&token=49d19ecc-7fc6-433a-87bf-340a9fdb4a8f',
   },
 };
+
+/**
+ * Mission images for seasons where a single season carries more than one
+ * scoresheet - from 2026-2027, when FLL Challenge split into Founders and
+ * Future editions. Keyed by season, then by that edition's program.
+ * Later multi-edition seasons drop in as another block here.
+ *
+ * FRED: paste your cropped mission image URLs in below. Keys are mission
+ * prefixes (m00, m01, ...) and the values are the public image URLs.
+ */
+export const editionMissionPics: {
+  [key in (typeof seasons)[number]]?: Partial<Record<Program, MissionPics>>;
+} = {
+  [20262027]: {
+    FLL_CHALLENGE_FOUNDERS: {
+      // m00: '',
+      // m01: '',
+      // m02: '',
+      // m03: '',
+      // m04: '',
+      // m05: '',
+      // m06: '',
+      // m07: '',
+      // m08: '',
+      // m09: '',
+      // m10: '',
+      // m11: '',
+      // m12: '',
+      // m13: '',
+      // m14: '',
+      // m15: '',
+      // m16: '', // Precision Tokens
+    },
+    FLL_CHALLENGE_FUTURE: {
+      // m01: '',
+      // m02: '',
+      // m03: '',
+      // m04: '',
+      // m05: '',
+      // m06: '', // Level Up Challenge - Invasive Attack
+    },
+  },
+};
+
+/**
+ * Mission images for one edition of a multi-edition season. Returns an empty
+ * map when nothing is registered yet, so callers can always index the result.
+ */
+export const picsFor = (
+  season: (typeof seasons)[number],
+  program: Program,
+): MissionPics => editionMissionPics[season]?.[program] ?? {};
+
 export default missionPics;
