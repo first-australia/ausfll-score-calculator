@@ -1,11 +1,19 @@
-import { BooleanScore, CategoricalScore, NumericScore, Score } from './game-types';
+import {
+  BooleanScore,
+  CategoricalScore,
+  NumericScore,
+  Score,
+} from './game-types';
 import cityShaper from './games/2019-CityShaper';
 import rePlay from './games/2020-RePlay';
 import cargoConnect from './games/2021-CargoConnect';
 import superPowered from './games/2022-SuperPowered';
 import masterPiece from './games/2023-Masterpiece';
 import submerged from './games/2024-Submerged';
+import unearthed from './games/2025-Unearthed';
 import unearthedAllianceChallenge from './games/2025-APOC-unearthed-alliance-challenge';
+import bioglowFounders from './games/2026-BIOGLOW-founders';
+import bioglowFuture from './games/2026-BIOGLOW-future';
 
 export const isNumericScore = (m: Score): m is NumericScore =>
   m.type === 'numeric';
@@ -15,6 +23,9 @@ export const isBooleanScore = (m: Score): m is BooleanScore =>
   m.type === 'boolean';
 
 export const games = [
+  bioglowFounders,
+  bioglowFuture,
+  unearthed,
   unearthedAllianceChallenge,
   submerged,
   masterPiece,
