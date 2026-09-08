@@ -164,13 +164,16 @@ const questions: Score<QuestionId>[] = [
   },
   {
     id: 'm07b',
-    // Both teams earn this when each side is fully extended; the models do not
-    // need to touch. Not achievable in remote play or with no opposing team.
+    // Two bonuses are possible, matching the official scoresheet. The models
+    // do not need to touch to form a connection. Not achievable in remote
+    // play or where there is no opposing team.
     label:
-      "Is a connection formed between your extended mycelium and the opposing team's fully extended plant root? (not possible in remote competitions or with no opposing team)",
-    labelShort: 'Connection?',
-    defaultValue: false,
-    type: 'boolean',
+      "Connections formed between an extended mycelium and the opposing team's fully extended plant root? (not possible in remote competitions or with no opposing team)",
+    labelShort: 'Connections?',
+    min: 0,
+    max: 2,
+    defaultValue: 0,
+    type: 'numeric',
   },
   // ---- M08 Tangled ----
   {
@@ -480,12 +483,12 @@ const validate = (answers: ScoreAnswer[]) => {
     });
   }
 
-  // M07: the connection bonus requires your own mycelium fully extended.
-  if (bAnswer(answers, 'm07b') && !bAnswer(answers, 'm07a')) {
+  // M07: the connection bonuses require your own mycelium fully extended.
+  if (nAnswer(answers, 'm07b') > 0 && !bAnswer(answers, 'm07a')) {
     errors.push({
       id: 'm07b',
       message:
-        'Connection formed but the mycelium is not completely extended - the bonus requires full extension',
+        'Connections recorded but the mycelium is not completely extended - the bonus requires full extension',
     });
   }
 
@@ -562,7 +565,8 @@ const score = (answers: ScoreAnswer[]): number => {
   // M07 - Humongous Fungus
   if (bAnswer(answers, 'm07a')) {
     _score += 20; // mycelium completely extended
-    if (bAnswer(answers, 'm07b')) _score += 10; // connection to the opposing plant root
+    // 10 per connection, and two bonuses are possible.
+    _score += Math.min(Math.round(nAnswer(answers, 'm07b')), 2) * 10;
   }
 
   // M08 - Tangled

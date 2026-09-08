@@ -191,14 +191,33 @@ describe('M07 - Humongous Fungus', () => {
     );
   });
 
-  it('adds 10 for the connection bonus', () => {
-    expect(
-      scoreWith(bioglowFounders, { m07a: true, m07b: true, m16a: 0 }),
-    ).toBe(30 + UNDISTURBED_HABITATS);
+  it('adds 10 for one connection bonus', () => {
+    expect(scoreWith(bioglowFounders, { m07a: true, m07b: 1, m16a: 0 })).toBe(
+      30 + UNDISTURBED_HABITATS,
+    );
   });
 
-  it('flags the connection bonus without a fully extended mycelium', () => {
-    const errors = validateWith(bioglowFounders, { m07a: false, m07b: true });
+  it('adds 20 for both connection bonuses', () => {
+    // Two bonuses are possible, matching the official scoresheet.
+    expect(scoreWith(bioglowFounders, { m07a: true, m07b: 2, m16a: 0 })).toBe(
+      40 + UNDISTURBED_HABITATS,
+    );
+  });
+
+  it('caps the connection bonus at two', () => {
+    expect(scoreWith(bioglowFounders, { m07a: true, m07b: 3, m16a: 0 })).toBe(
+      40 + UNDISTURBED_HABITATS,
+    );
+  });
+
+  it('scores no connection bonus without a fully extended mycelium', () => {
+    expect(scoreWith(bioglowFounders, { m07a: false, m07b: 2, m16a: 0 })).toBe(
+      0 + UNDISTURBED_HABITATS,
+    );
+  });
+
+  it('flags connections recorded without a fully extended mycelium', () => {
+    const errors = validateWith(bioglowFounders, { m07a: false, m07b: 1 });
     expect(errors.some((e) => e.id === 'm07b')).toBe(true);
   });
 });
@@ -398,7 +417,7 @@ describe('Validation - general', () => {
       m06a: true,
       m06b: 4,
       m07a: true,
-      m07b: true,
+      m07b: 2,
       m08a: true,
       m09a: true,
       m09b: true,
@@ -437,7 +456,7 @@ describe('Maximum score', () => {
       m06a: true,
       m06b: 4,
       m07a: true,
-      m07b: true,
+      m07b: 2,
       m08a: true,
       m09a: true,
       m09b: true,
@@ -456,9 +475,9 @@ describe('Maximum score', () => {
       m15d: 'Farm dock',
       m16a: 6,
     });
-    // Inspection 20, M01 30, M02 30, M03 30, M04 30, M05 20, M06 40, M07 30,
+    // Inspection 20, M01 30, M02 30, M03 30, M04 30, M05 20, M06 40, M07 40,
     // M08 30, M09 30, M10 20, M11 20, M12 30, M13 30, M14 40, M15 40,
     // precision tokens 50
-    expect(max).toBe(520);
+    expect(max).toBe(530);
   });
 });

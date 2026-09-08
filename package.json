@@ -28,8 +28,7 @@
     "postbuild": "node ./scripts/set-common-packages.js",
     "start:dev": "tsc -p tsconfig-mjs.json --watch & tsc -p tsconfig-cjs.json --watch",
     "check": "tsc --noEmit",
-    "test:watch": "vitest",
-    "docs": "vite-node scripts/generate-2026-scoresheet-docs.mts"
+    "test:watch": "vitest"
   },
   "repository": {
     "type": "git",
@@ -51,7 +50,6 @@
     "prettier": "^2.7.1",
     "rimraf": "^6.0.1",
     "typescript": "^4.7.4",
-    "vite-node": "^6.0.0",
     "vitest": "^5.0.0"
   },
   "packageManager": "pnpm@10.11.0+sha512.6540583f41cc5f628eb3d9773ecee802f4f9ef9923cc45b69890fb47991d4b092964694ec3a4f738a420c918a333062c8b925d312f42e4f0c263eb603551f977"
