@@ -9,3 +9,4 @@
 ./packages/common/dist
 node_modules
 .env
+.pnpm-store
