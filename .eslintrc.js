@@ -1,7 +1,9 @@
 module.exports = {
     parser: '@typescript-eslint/parser',
     parserOptions: {
-      project: 'tsconfig.json',
+      // Covers src and test; the build configs stay limited to src so that
+      // tests are never emitted into dist.
+      project: 'tsconfig.eslint.json',
       tsconfigRootDir: __dirname,
       sourceType: 'module',
     },
@@ -38,6 +40,12 @@ module.exports = {
           format: ['camelCase', 'UPPER_CASE'],
           leadingUnderscore: 'allow',
           trailingUnderscore: 'allow',
+        },
+        {
+          // Object keys that are FIRST program or season identifiers, such as
+          // the FLL_CHALLENGE_FOUNDERS keys in firebase.links.ts.
+          selector: 'objectLiteralProperty',
+          format: ['camelCase', 'UPPER_CASE'],
         },
         {
           selector: 'typeLike',

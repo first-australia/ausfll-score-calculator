@@ -1,4 +1,4 @@
-import { Season } from 'first-constants';
+import { Program, Season } from 'first-constants';
 
 export type ScoreAnswer = { id: string; answer: string };
 
@@ -78,7 +78,7 @@ export type Mission = {
 export type Game = {
   name: string;
   season: Season;
-  program: 'FLL_CHALLENGE';
+  program: Program;
   scores: Score[];
   missions: Mission[];
   answer: (res: ScoreAnswer[], q: string) => ScoreAnswer['answer'] | undefined;

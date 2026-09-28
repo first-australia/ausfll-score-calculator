@@ -6,3 +6,5 @@ export * from './first-constants';
 export * from './firebase.links';
 export * from './functions';
 export { default as unearthedAllianceChallenge } from './games/2025-APOC-unearthed-alliance-challenge';
+export { default as bioglowFounders } from './games/2026-BIOGLOW-founders';
+export { default as bioglowFuture } from './games/2026-BIOGLOW-future';

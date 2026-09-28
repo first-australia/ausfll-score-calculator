@@ -1,6 +1,6 @@
 {
   "name": "ausfll-score-calculator",
-  "version": "25.1.0",
+  "version": "26.0.0",
   "description": "FIRST LEGO League score calculator by the Australian Head Referee",
   "main": "dist/cjs/index.js",
   "main:src": "src/index.ts",
@@ -19,7 +19,7 @@
     }
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest run",
     "prebuild": "rimraf dist",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "format": "prettier --write \"src/**/*.ts\"",
@@ -27,7 +27,8 @@
     "build": "tsc -p tsconfig-mjs.json && tsc -p tsconfig-cjs.json && tsc -p tsconfig-types.json",
     "postbuild": "node ./scripts/set-common-packages.js",
     "start:dev": "tsc -p tsconfig-mjs.json --watch & tsc -p tsconfig-cjs.json --watch",
-    "check": "tsc --noEmit"
+    "check": "tsc --noEmit",
+    "test:watch": "vitest"
   },
   "repository": {
     "type": "git",
@@ -48,7 +49,8 @@
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.7.1",
     "rimraf": "^6.0.1",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "vitest": "^5.0.0"
   },
   "packageManager": "pnpm@10.11.0+sha512.6540583f41cc5f628eb3d9773ecee802f4f9ef9923cc45b69890fb47991d4b092964694ec3a4f738a420c918a333062c8b925d312f42e4f0c263eb603551f977"
 }
