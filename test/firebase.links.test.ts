@@ -34,8 +34,8 @@ describe('mission images', () => {
   it('returns an empty map for an edition with no images yet', () => {
     // Images are added by hand after the season art is cropped, so an empty
     // map must still be safe to index.
-    expect(picsFor(20262027, 'FLL_CHALLENGE_FOUNDERS')).toEqual({});
-    expect(picsFor(20262027, 'FLL_CHALLENGE_FOUNDERS').m01).toBeUndefined();
+    expect(picsFor(20272028, 'FLL_CHALLENGE_FOUNDERS')).toEqual({});
+    expect(picsFor(20227028, 'FLL_CHALLENGE_FOUNDERS').m01).toBeUndefined();
   });
 
   it('returns an empty map for a season with no edition entry', () => {
