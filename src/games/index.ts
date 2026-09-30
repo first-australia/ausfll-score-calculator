@@ -1,4 +1,4 @@
-import { seasons } from 'first-constants';
+import { Program, Season, seasons } from 'first-constants';
 import { Game } from '../game-types';
 import cityShaper from './2019-CityShaper';
 import rePlay from './2020-RePlay';
@@ -31,6 +31,24 @@ const games: {
 export const gamesForSeason = (season: (typeof seasons)[number]): Game[] => {
   const entry = games[season];
   return Array.isArray(entry) ? entry : [entry];
+};
+
+/** Finds a single game given a season & program, library consumers should use this as an entry point
+ * Since 2026-2027 onwards we support multiple programs per season (FLL Challenge Founders + FLL Challenge Future)
+ */
+export const findGame = (season: Season, program: Program): Game => {
+  const seasonOptions = games[season];
+  if (!Array.isArray(seasonOptions)) {
+    // Found single game
+    return seasonOptions;
+  } else {
+    const result = seasonOptions.find((game) => game.program === program);
+    if (result) {
+      return result;
+    } else {
+      throw Error('Could not find a game matching provided args');
+    }
+  }
 };
 
 export {
