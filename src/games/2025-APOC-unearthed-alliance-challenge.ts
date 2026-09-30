@@ -240,7 +240,8 @@ const questions: Score<QuestionId>[] = [
   },
   {
     id: 'gpb',
-    label: 'How many robots were launched from both launch areas during the match?',
+    label:
+      'How many robots were launched from both launch areas during the match?',
     labelShort: 'Dual-launch robots?',
     min: 0,
     max: 2,

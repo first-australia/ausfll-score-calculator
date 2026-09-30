@@ -254,7 +254,7 @@ const missions: Mission[] = [
   },
   {
     prefix: 'm01',
-    title: 'M01 - Coral Nursery 🚳' ,
+    title: 'M01 - Coral Nursery 🚳',
     image: missionPics[SEASON].m01,
   },
   {
