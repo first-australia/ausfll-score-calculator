@@ -199,15 +199,27 @@ describe('M07 - Humongous Fungus', () => {
 
   it('adds 20 for both connection bonuses', () => {
     // Two bonuses are possible, matching the official scoresheet.
-    expect(scoreWith(bioglowFounders, { m07a: true, m07b: 2, m16a: 0 })).toBe(
-      40 + UNDISTURBED_HABITATS,
-    );
+    expect(
+      scoreWith(bioglowFounders, {
+        m05a: 'Completely extended',
+        m07a: true,
+        m07b: 2,
+        m16a: 0,
+      }),
+      // 20 for m05a completely + 20 for mycelium + 10 each for 2 connections
+    ).toBe(UNDISTURBED_HABITATS + 20 + 20 + 10 + 10);
   });
 
   it('caps the connection bonus at two', () => {
-    expect(scoreWith(bioglowFounders, { m07a: true, m07b: 3, m16a: 0 })).toBe(
-      40 + UNDISTURBED_HABITATS,
-    );
+    expect(
+      scoreWith(bioglowFounders, {
+        m05a: 'Completely extended',
+        m07a: true,
+        m07b: 3,
+        m16a: 0,
+      }),
+      // 20 for m05a completely + 20 for mycelium + 10 each for 2 connections
+    ).toBe(UNDISTURBED_HABITATS + 20 + 20 + 10 + 10);
   });
 
   it('scores no connection bonus without a fully extended mycelium', () => {

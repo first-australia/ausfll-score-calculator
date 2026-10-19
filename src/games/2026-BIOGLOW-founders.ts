@@ -483,12 +483,26 @@ const validate = (answers: ScoreAnswer[]) => {
     });
   }
 
-  // M07: the connection bonuses require your own mycelium fully extended.
-  if (nAnswer(answers, 'm07b') > 0 && !bAnswer(answers, 'm07a')) {
+  // M07: each connection needs one of your models fully extended - your
+  // mycelium (to their root) or your plant root (to their mycelium).
+  const connections = nAnswer(answers, 'm07b');
+  if (connections > 2)
+    errors.push({
+      id: 'm07b',
+      message: 'You cannot have more than 2 cross-table connections',
+    });
+
+  const extendedCount =
+    (bAnswer(answers, 'm07a') ? 1 : 0) +
+    (answer(answers, 'm05a') === 'Completely extended' ? 1 : 0);
+
+  if (connections > extendedCount) {
     errors.push({
       id: 'm07b',
       message:
-        'Connections recorded but the mycelium is not completely extended - the bonus requires full extension',
+        connections === 1
+          ? '1 connection recorded but neither your mycelium nor your plant root is fully extended'
+          : '2 connections recorded but your mycelium and plant root are not both fully extended',
     });
   }
 
@@ -563,11 +577,11 @@ const score = (answers: ScoreAnswer[]): number => {
   }
 
   // M07 - Humongous Fungus
-  if (bAnswer(answers, 'm07a')) {
-    _score += 20; // mycelium completely extended
-    // 10 per connection, and two bonuses are possible.
-    _score += Math.min(Math.round(nAnswer(answers, 'm07b')), 2) * 10;
-  }
+  if (bAnswer(answers, 'm07a')) _score += 20; // mycelium completely extended
+  const m07Extended =
+    (bAnswer(answers, 'm07a') ? 1 : 0) +
+    (answer(answers, 'm05a') === 'Completely extended' ? 1 : 0);
+  _score += Math.min(Math.round(nAnswer(answers, 'm07b')), m07Extended) * 10;
 
   // M08 - Tangled
   if (bAnswer(answers, 'm08a')) _score += 30;
