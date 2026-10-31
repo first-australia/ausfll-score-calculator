@@ -16,7 +16,8 @@ const questionIds = [
   'm03b',
   'm04a',
   'm04b',
-  'm04c',
+  'm04d',
+  'm04e',
   'm05a',
   'm06a',
   'm06b',
@@ -105,25 +106,32 @@ const questions: Score<QuestionId>[] = [
     defaultValue: 0,
     type: 'numeric',
   },
+  // Challenge Update 01 (2 Sep 2026): the katydid's whereabouts are recorded
+  // as three separate facts. `m04c` is retired: it meant "inside the leaf
+  // habitat" in sheets saved before this change, so reusing the ID with a
+  // different meaning would misread them.
   {
     id: 'm04b',
-    // The rulebook disqualifies the bonus if the katydid is completely removed
-    // from the nest AT ANY TIME, not merely displaced at the end of the match,
-    // so a katydid knocked out and put back still loses the bonus.
-    label:
-      'Is the katydid in its original starting position, having never been completely removed from the nest during the match?',
+    label: 'Is the katydid in its original starting position?',
     labelShort: 'Katydid in place?',
     defaultValue: true,
     type: 'boolean',
   },
   {
-    id: 'm04c',
-    // Rulebook: outside the leaf habitat at the end of the match, even partly,
-    // scores zero for the mission.
+    id: 'm04d',
+    // Completely outside the leaf habitat at any time loses the bonus.
     label:
-      'Is the katydid inside the leaf habitat, not even partly outside it? (the leaf habitat is the nest and the marked area on the mat around it)',
-    labelShort: 'Katydid in habitat?',
-    defaultValue: true,
+      'Was the katydid ever completely outside the leaf habitat during the match? (the leaf habitat is the nest and the marked area on the mat around it)',
+    labelShort: 'Katydid ever out?',
+    defaultValue: false,
+    type: 'boolean',
+  },
+  {
+    id: 'm04e',
+    // Completely outside the leaf habitat at the end scores zero for M04.
+    label: 'Is the katydid completely outside the leaf habitat?',
+    labelShort: 'Katydid out now?',
+    defaultValue: false,
     type: 'boolean',
   },
   // ---- M05 Reaching Roots ----
@@ -164,11 +172,12 @@ const questions: Score<QuestionId>[] = [
   },
   {
     id: 'm07b',
-    // Two bonuses are possible, matching the official scoresheet. The models
-    // do not need to touch to form a connection. Not achievable in remote
-    // play or where there is no opposing team.
+    // Two bonuses are possible, matching the official scoresheet: this team's
+    // mycelium to the opposing plant root, and the opposing mycelium to this
+    // team's plant root. The models do not need to touch to form a connection.
+    // Not achievable in remote play or where there is no opposing team.
     label:
-      "Connections formed between an extended mycelium and the opposing team's fully extended plant root? (not possible in remote competitions or with no opposing team)",
+      "Connections formed between an extended mycelium and the opposing team's fully extended plant root? (count both directions: your mycelium to their root, and their mycelium to your root; not possible in remote competitions or with no opposing team)",
     labelShort: 'Connections?',
     min: 0,
     max: 2,
@@ -435,74 +444,55 @@ const validate = (answers: ScoreAnswer[]) => {
     });
 
   // game-specific validation
+  //
+  // The referee records what happened on the field; `score` decides what that
+  // is worth. Only combinations that cannot physically happen are flagged
+  // here, never combinations that are possible but score nothing.
 
-  // M01: the LiDAR bonus is only available once the drone has been flown.
-  if (bAnswer(answers, 'm01b') && !bAnswer(answers, 'm01a')) {
-    errors.push({
-      id: 'm01b',
-      message:
-        'LiDAR map flipped but the drone is still touching the mat - the bonus requires the drone to be flown',
-    });
+  // M04: a katydid completely outside the leaf habitat now has been outside
+  // it at some point, and is not in its starting position.
+  if (bAnswer(answers, 'm04e')) {
+    if (!bAnswer(answers, 'm04d')) {
+      errors.push({
+        id: 'm04d',
+        message:
+          'Katydid is completely outside the leaf habitat now, so it was completely outside it during the match',
+      });
+    }
+    if (bAnswer(answers, 'm04b')) {
+      errors.push({
+        id: 'm04b',
+        message:
+          'Katydid is completely outside the leaf habitat, so it cannot be in its original starting position',
+      });
+    }
   }
 
-  // M03: the rock cannot be back in its starting position with the flag down,
-  // unless the flag was knocked down before the rock was replaced. Returning
-  // the rock without ever flipping it is the case worth flagging.
-  if (bAnswer(answers, 'm03b') && !bAnswer(answers, 'm03a')) {
-    errors.push({
-      id: 'm03b',
-      message:
-        'Rock returned to its starting position but the research flag is not down - the bonus requires the flag to be down',
-    });
-  }
-
-  // M04: the second leaf bonus needs the katydid in its starting position, and
-  // a katydid outside the leaf habitat zeroes the mission entirely.
-  const leaves = nAnswer(answers, 'm04a');
-  if (leaves === 2 && !bAnswer(answers, 'm04b')) {
-    errors.push({
-      id: 'm04b',
-      message:
-        'Second leaf removed but the katydid is not in its original starting position - the bonus will not score',
-    });
-  }
-  if (!bAnswer(answers, 'm04c') && leaves > 0) {
-    errors.push({
-      id: 'm04c',
-      message:
-        'Katydid is outside the leaf habitat - M04 scores zero regardless of leaves removed',
-    });
-  }
-
-  // M06: fragments only count once the ant is touching the nest.
-  if (nAnswer(answers, 'm06b') > 0 && !bAnswer(answers, 'm06a')) {
-    errors.push({
-      id: 'm06b',
-      message:
-        'Leaf fragments contained but the ant is not touching the nest - no points score for this mission',
-    });
-  }
-
-  // M07: each connection needs one of your models fully extended - your
-  // mycelium (to their root) or your plant root (to their mycelium).
+  // M07: each connection needs a mycelium on one field and a fully extended
+  // plant root on the other. One connection involves this team's mycelium
+  // (M07) or this team's root (M05); two need both. A connection made only
+  // through this team's root is recordable but scores nothing, because the
+  // bonus is on this team's mycelium (see `score`).
   const connections = nAnswer(answers, 'm07b');
-  if (connections > 2)
+  if (connections > 2) {
     errors.push({
       id: 'm07b',
       message: 'You cannot have more than 2 cross-table connections',
     });
-
-  const extendedCount =
-    (bAnswer(answers, 'm07a') ? 1 : 0) +
-    (answer(answers, 'm05a') === 'Completely extended' ? 1 : 0);
-
-  if (connections > extendedCount) {
+  }
+  const mycelium = bAnswer(answers, 'm07a');
+  const root = answer(answers, 'm05a') === 'Completely extended';
+  if (connections >= 2 && !(mycelium && root)) {
     errors.push({
       id: 'm07b',
       message:
-        connections === 1
-          ? '1 connection recorded but neither your mycelium nor your plant root is fully extended'
-          : '2 connections recorded but your mycelium and plant root are not both fully extended',
+        'Two connections need both your mycelium completely extended (M07) and your plant root completely extended (M05)',
+    });
+  } else if (connections >= 1 && !(mycelium || root)) {
+    errors.push({
+      id: 'm07b',
+      message:
+        'A connection needs either your mycelium completely extended (M07) or your plant root completely extended (M05)',
     });
   }
 
@@ -551,12 +541,16 @@ const score = (answers: ScoreAnswer[]): number => {
   }
 
   // M04 - Lucky Leaves
-  // A katydid outside the leaf habitat at the end of the match scores zero.
-  if (bAnswer(answers, 'm04c')) {
+  // A katydid completely outside the leaf habitat at the end of the match
+  // scores zero.
+  if (!bAnswer(answers, 'm04e')) {
     const leaves = Math.min(Math.round(nAnswer(answers, 'm04a')), 2);
     if (leaves >= 1) _score += 10; // first leaf removed
-    // The second leaf only scores with the katydid in its starting position.
-    if (leaves >= 2 && bAnswer(answers, 'm04b')) _score += 20;
+    // The second leaf only scores with the katydid in its starting position,
+    // and never completely outside the leaf habitat during the match.
+    if (leaves >= 2 && bAnswer(answers, 'm04b') && !bAnswer(answers, 'm04d')) {
+      _score += 20;
+    }
   }
 
   // M05 - Reaching Roots (only one scoring condition is possible)
@@ -577,11 +571,12 @@ const score = (answers: ScoreAnswer[]): number => {
   }
 
   // M07 - Humongous Fungus
-  if (bAnswer(answers, 'm07a')) _score += 20; // mycelium completely extended
-  const m07Extended =
-    (bAnswer(answers, 'm07a') ? 1 : 0) +
-    (answer(answers, 'm05a') === 'Completely extended' ? 1 : 0);
-  _score += Math.min(Math.round(nAnswer(answers, 'm07b')), m07Extended) * 10;
+  if (bAnswer(answers, 'm07a')) {
+    _score += 20; // mycelium completely extended
+    // 10 per connection, and two bonuses are possible. Connections score only
+    // as a bonus on this team's extended mycelium.
+    _score += Math.min(Math.round(nAnswer(answers, 'm07b')), 2) * 10;
+  }
 
   // M08 - Tangled
   if (bAnswer(answers, 'm08a')) _score += 30;

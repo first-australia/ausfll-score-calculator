@@ -3,6 +3,10 @@
 A one-page cross-check of the questions, scoring and validation for both
 2026 editions, for reconciling the implementation against the rulebooks.
 
+Validation only flags combinations that cannot physically happen. The referee
+records what happened on the field, and scoring decides what it is worth, so
+combinations that are possible but score nothing are not errors.
+
 **Maintained by hand.** The point values below were originally measured from
 each game's own `score` function, but nothing keeps them in step now: if you
 change scoring or validation in `src/games/2026-BIOGLOW-*.ts`, update this
@@ -38,7 +42,7 @@ item scores. The Scoring notes call out the rulebook maxima that are real.
 | `m01b` | Is the LiDAR map completely flipped over, with the scan marker at least partly in the survey area? | Yes / No (default No) | 10 _(conditional)_ |
 
 - **Scoring:** The LiDAR bonus (10) only scores if the drone is flown (m01a).
-- **Validation error:** m01b set without m01a.
+- No validation: m01b without m01a is recordable and scores nothing.
 
 ### M02 - Exploding Seeds
 
@@ -54,20 +58,22 @@ item scores. The Scoring notes call out the rulebook maxima that are real.
 | `m03b` | Has the rock been returned to its original starting position? | Yes / No (default No) | 10 _(conditional)_ |
 
 - **Scoring:** The rock-return bonus (10) only scores if the flag is down (m03a).
-- **Validation error:** m03b set without m03a.
+- No validation: m03b without m03a is recordable and scores nothing.
 
 ### M04 - Lucky Leaves 🚳
 
 | ID | Question | Answers | Points |
 | --- | --- | --- | --- |
 | `m04a` | Leaves completely removed, no longer touching the nest? | 0-2 (default 0) | 30 |
-| `m04b` | Is the katydid in its original starting position, having never been completely removed from the nest during the match? | Yes / No (default Yes) | 20 _(conditional)_ |
-| `m04c` | Is the katydid inside the leaf habitat, not even partly outside it? (the leaf habitat is the nest and the marked area on the mat around it) | Yes / No (default Yes) | 30 _(conditional)_ |
+| `m04b` | Is the katydid in its original starting position? | Yes / No (default Yes) | 20 _(conditional)_ |
+| `m04d` | Was the katydid ever completely outside the leaf habitat during the match? (the leaf habitat is the nest and the marked area on the mat around it) | Yes / No (default No) | 20 _(lost if not met)_ |
+| `m04e` | Is the katydid completely outside the leaf habitat? | Yes / No (default No) | 30 _(lost if not met)_ |
 
-- **Scoring:** A katydid outside the leaf habitat (m04c = No) zeroes the whole mission.
-- **Scoring:** First leaf 10; the second leaf adds 20 only if the katydid is in its starting position (m04b).
-- **Validation error:** Two leaves removed but m04b = No (bonus lost).
-- **Validation error:** m04c = No while any leaf is removed (mission zeroed).
+- **Scoring:** Wording follows Challenge Update 01 (2 Sep 2026). `m04c` is retired: it meant "inside the leaf habitat" in sheets saved before the split, so the ID is not reused.
+- **Scoring:** A katydid completely outside the leaf habitat at the end of the match (m04e = Yes) zeroes the whole mission.
+- **Scoring:** First leaf 10; the second leaf adds 20 only if m04b = Yes and m04d = No.
+- **Validation error:** m04e = Yes with m04d = No (outside now means it was outside during the match).
+- **Validation error:** m04e = Yes with m04b = Yes (outside the habitat cannot be the starting position).
 
 ### M05 - Reaching Roots 🚳
 
@@ -86,18 +92,20 @@ item scores. The Scoring notes call out the rulebook maxima that are real.
 
 - **Scoring:** Fragments score 10 each only while the ant touches the nest (m06a); otherwise the mission scores 0.
 - **Scoring:** The nest holds four fragments (white, yellow, orange, green), so 40 is the mission maximum.
-- **Validation error:** Fragments counted with m06a = No.
+- No validation: fragments with m06a = No are recordable and score nothing.
 
 ### M07 - Humongous Fungus 🚳
 
 | ID | Question | Answers | Points |
 | --- | --- | --- | --- |
 | `m07a` | Is the mycelium completely extended? | Yes / No (default No) | 20 |
-| `m07b` | Connections formed between an extended mycelium and the opposing team's fully extended plant root? (not possible in remote competitions or with no opposing team) | 0-2 (default 0) | 20 _(conditional)_ |
+| `m07b` | Connections formed between an extended mycelium and the opposing team's fully extended plant root? (count both directions: your mycelium to their root, and their mycelium to your root; not possible in remote competitions or with no opposing team) | 0-2 (default 0) | 20 _(conditional)_ |
 
 - **Scoring:** Connection bonuses are 10 each and require your mycelium fully extended (m07a). Two are possible, per the official scoresheet.
 - **Scoring:** The mycelium and plant root do not need to touch. Not earnable in remote competitions or where there is no opposing team.
-- **Validation error:** Connections recorded without m07a.
+- **Scoring:** A connection made only through your root (m07a = No) is recordable but scores nothing.
+- **Validation error:** One connection with neither m07a nor m05a = `Completely extended`.
+- **Validation error:** Two connections without both m07a and m05a = `Completely extended`.
 
 ### M08 - Tangled
 

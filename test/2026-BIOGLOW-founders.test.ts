@@ -57,9 +57,10 @@ describe('M01 - Drone Survey', () => {
     );
   });
 
-  it('flags the LiDAR bonus claimed without the drone flown', () => {
+  it('allows recording the LiDAR map flipped with the drone still on the mat', () => {
+    // Physically possible, so the referee can record it; it just scores nothing.
     const errors = validateWith(bioglowFounders, { m01a: false, m01b: true });
-    expect(errors.some((e) => e.id === 'm01b')).toBe(true);
+    expect(errors).toHaveLength(0);
   });
 });
 
@@ -95,6 +96,11 @@ describe('M03 - Flip the Rock', () => {
       0 + UNDISTURBED_HABITATS,
     );
   });
+
+  it('allows recording the rock in place with the flag still up', () => {
+    const errors = validateWith(bioglowFounders, { m03a: false, m03b: true });
+    expect(errors).toHaveLength(0);
+  });
 });
 
 describe('M04 - Lucky Leaves', () => {
@@ -116,24 +122,63 @@ describe('M04 - Lucky Leaves', () => {
     );
   });
 
-  it('scores zero for the mission when the katydid is outside the habitat', () => {
+  it('does not award the bonus if the katydid was ever completely outside the habitat', () => {
+    // Knocked out of the habitat and put back in its starting position.
+    expect(
+      scoreWith(bioglowFounders, { m04a: 2, m04b: true, m04d: true, m16a: 0 }),
+    ).toBe(10 + UNDISTURBED_HABITATS);
+  });
+
+  it('scores zero for the mission when the katydid is completely outside the habitat', () => {
     expect(
       scoreWith(bioglowFounders, {
         m04a: 2,
-        m04b: true,
-        m04c: false,
+        m04b: false,
+        m04d: true,
+        m04e: true,
         m16a: 0,
       }),
     ).toBe(0 + UNDISTURBED_HABITATS);
   });
 
-  it('flags a katydid outside the habitat', () => {
-    const errors = validateWith(bioglowFounders, { m04a: 1, m04c: false });
-    expect(errors.some((e) => e.id === 'm04c')).toBe(true);
+  it('scores sheets saved before the split, which have no m04d or m04e', () => {
+    const answers = buildAnswers(bioglowFounders, { m04a: 2, m16a: 0 }).filter(
+      (a) => a.id !== 'm04d' && a.id !== 'm04e',
+    );
+    answers.push({ id: 'm04c', answer: 'Yes' });
+    expect(bioglowFounders.score(answers)).toBe(30 + UNDISTURBED_HABITATS);
   });
 
-  it('flags the second leaf removed with the katydid displaced', () => {
-    const errors = validateWith(bioglowFounders, { m04a: 2, m04b: false });
+  it.each([
+    ['in place, never out', { m04b: true, m04d: false, m04e: false }],
+    ['in place after being out', { m04b: true, m04d: true, m04e: false }],
+    ['moved, never out', { m04b: false, m04d: false, m04e: false }],
+    [
+      'moved, back in after being out',
+      { m04b: false, m04d: true, m04e: false },
+    ],
+    ['out now', { m04b: false, m04d: true, m04e: true }],
+  ])('allows a katydid %s', (_, overrides) => {
+    expect(
+      validateWith(bioglowFounders, { m04a: 2, ...overrides }),
+    ).toHaveLength(0);
+  });
+
+  it('flags a katydid outside the habitat now but never outside during the match', () => {
+    const errors = validateWith(bioglowFounders, {
+      m04b: false,
+      m04d: false,
+      m04e: true,
+    });
+    expect(errors.some((e) => e.id === 'm04d')).toBe(true);
+  });
+
+  it('flags a katydid outside the habitat but in its starting position', () => {
+    const errors = validateWith(bioglowFounders, {
+      m04b: true,
+      m04d: true,
+      m04e: true,
+    });
     expect(errors.some((e) => e.id === 'm04b')).toBe(true);
   });
 });
@@ -178,9 +223,9 @@ describe('M06 - Leafcutter Frenzy', () => {
     );
   });
 
-  it('flags fragments contained without the ant touching the nest', () => {
+  it('allows recording fragments contained without the ant touching the nest', () => {
     const errors = validateWith(bioglowFounders, { m06a: false, m06b: 3 });
-    expect(errors.some((e) => e.id === 'm06b')).toBe(true);
+    expect(errors).toHaveLength(0);
   });
 });
 
@@ -228,8 +273,55 @@ describe('M07 - Humongous Fungus', () => {
     );
   });
 
-  it('flags connections recorded without a fully extended mycelium', () => {
-    const errors = validateWith(bioglowFounders, { m07a: false, m07b: 1 });
+  it('allows one connection with the mycelium extended', () => {
+    const errors = validateWith(bioglowFounders, { m07a: true, m07b: 1 });
+    expect(errors).toHaveLength(0);
+  });
+
+  it('allows one connection with only the plant root completely extended', () => {
+    const errors = validateWith(bioglowFounders, {
+      m05a: 'Completely extended',
+      m07a: false,
+      m07b: 1,
+    });
+    expect(errors).toHaveLength(0);
+  });
+
+  it('scores nothing for a connection made only through the plant root', () => {
+    // M05 complete (20), but the connection is a bonus on the mycelium.
+    expect(
+      scoreWith(bioglowFounders, {
+        m05a: 'Completely extended',
+        m07a: false,
+        m07b: 1,
+        m16a: 0,
+      }),
+    ).toBe(20 + UNDISTURBED_HABITATS);
+  });
+
+  it('flags one connection with neither the mycelium nor the root extended', () => {
+    const errors = validateWith(bioglowFounders, {
+      m05a: 'Partially extended',
+      m07a: false,
+      m07b: 1,
+    });
+    expect(errors.some((e) => e.id === 'm07b')).toBe(true);
+  });
+
+  it('allows two connections with both the mycelium and root extended', () => {
+    const errors = validateWith(bioglowFounders, {
+      m05a: 'Completely extended',
+      m07a: true,
+      m07b: 2,
+    });
+    expect(errors).toHaveLength(0);
+  });
+
+  it.each([
+    ['only the mycelium', { m07a: true, m05a: 'Partially extended' }],
+    ['only the root', { m07a: false, m05a: 'Completely extended' }],
+  ])('flags two connections with %s extended', (_, overrides) => {
+    const errors = validateWith(bioglowFounders, { ...overrides, m07b: 2 });
     expect(errors.some((e) => e.id === 'm07b')).toBe(true);
   });
 });
@@ -424,7 +516,8 @@ describe('Validation - general', () => {
       m03b: true,
       m04a: 2,
       m04b: true,
-      m04c: true,
+      m04d: false,
+      m04e: false,
       m05a: 'Completely extended',
       m06a: true,
       m06b: 4,
@@ -463,7 +556,8 @@ describe('Maximum score', () => {
       m03b: true,
       m04a: 2,
       m04b: true,
-      m04c: true,
+      m04d: false,
+      m04e: false,
       m05a: 'Completely extended',
       m06a: true,
       m06b: 4,
