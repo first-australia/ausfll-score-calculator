@@ -276,6 +276,7 @@ const bioglowFuture: Game = {
   name: 'BIOGLOW Future Edition',
   program: PROGRAM,
   season: SEASON,
+  revision: 1,
   scores: questions,
   missions,
   answer: (res, q) => answer(res, q),

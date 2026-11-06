@@ -69,7 +69,7 @@ item scores. The Scoring notes call out the rulebook maxima that are real.
 | `m04d` | Was the katydid ever completely outside the leaf habitat during the match? (the leaf habitat is the nest and the marked area on the mat around it) | Yes / No (default No) | 20 _(lost if not met)_ |
 | `m04e` | Is the katydid completely outside the leaf habitat? | Yes / No (default No) | 30 _(lost if not met)_ |
 
-- **Scoring:** Wording follows Challenge Update 01 (2 Sep 2026). `m04c` is retired: it meant "inside the leaf habitat" in sheets saved before the split, so the ID is not reused.
+- **Scoring:** Wording follows Challenge Update 01 (2 Sep 2026), in revision 2 of this game. `m04c` is retired: it meant "inside the leaf habitat" in sheets saved before the split, so the ID is not reused. Revision 1 (as published in 26.1.2) is kept in `2026-BIOGLOW-founders-r1.ts` so those sheets show and score as recorded: there, `m04b` asked whether the katydid was in its starting position having never been completely removed from the nest, and `m04c` = No zeroed the mission.
 - **Scoring:** A katydid completely outside the leaf habitat at the end of the match (m04e = Yes) zeroes the whole mission.
 - **Scoring:** First leaf 10; the second leaf adds 20 only if m04b = Yes and m04d = No.
 - **Validation error:** m04e = Yes with m04d = No (outside now means it was outside during the match).
