@@ -554,6 +554,7 @@ const masterPiece: Game = {
   name: 'Masterpiece',
   program: 'FLL_CHALLENGE',
   season: SEASON,
+  revision: 1,
   scores: questions,
   missions,
   answer: (res, q) => answer(res, q),

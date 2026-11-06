@@ -9,6 +9,9 @@ import submerged from './2024-Submerged';
 import unearthed from './2025-Unearthed';
 import bioglowFounders from './2026-BIOGLOW-founders';
 import bioglowFuture from './2026-BIOGLOW-future';
+import { SavedScoresheet, revisionFor } from './revisions';
+
+export * from './revisions';
 
 // From 2026-2027 a season can carry more than one game: FIRST split FLL
 // Challenge into a Founders Edition and a Future Edition, each with its own
@@ -33,22 +36,27 @@ export const gamesForSeason = (season: (typeof seasons)[number]): Game[] => {
   return Array.isArray(entry) ? entry : [entry];
 };
 
-/** Finds a single game given a season & program, library consumers should use this as an entry point
+/**
+ * Finds a single game given a season & program, library consumers should use this as an entry point
  * Since 2026-2027 onwards we support multiple programs per season (FLL Challenge Founders + FLL Challenge Future)
+ *
+ * Returns the current revision, or with `sheet`, the revision that saved
+ * scoresheet was scored with (see `revisionFor`).
  */
-export const findGame = (season: Season, program: Program): Game => {
+export const findGame = (
+  season: Season,
+  program: Program,
+  sheet?: SavedScoresheet,
+): Game => {
   const seasonOptions = games[season];
-  if (!Array.isArray(seasonOptions)) {
-    // Found single game
-    return seasonOptions;
-  } else {
-    const result = seasonOptions.find((game) => game.program === program);
-    if (result) {
-      return result;
-    } else {
-      throw Error('Could not find a game matching provided args');
-    }
+  const current = Array.isArray(seasonOptions)
+    ? seasonOptions.find((game) => game.program === program)
+    : // Found single game
+      seasonOptions;
+  if (!current) {
+    throw Error('Could not find a game matching provided args');
   }
+  return sheet ? revisionFor(current, sheet) : current;
 };
 
 export {

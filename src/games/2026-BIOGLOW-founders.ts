@@ -655,6 +655,7 @@ const bioglowFounders: Game = {
   name: 'BIOGLOW Founders Edition',
   program: PROGRAM,
   season: SEASON,
+  revision: 2,
   scores: questions,
   missions,
   answer: (res, q) => answer(res, q),

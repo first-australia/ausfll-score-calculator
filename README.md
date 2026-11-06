@@ -31,6 +31,27 @@ Game.score(/*...*/);
 
 See examples/ScoreCalculator.tsx for an example of this.
 
+### Revisions and saved scoresheets
+
+When a rule update changes what a question means or how it scores, the game gets a new revision (`Game.revision`) and the earlier one is kept, unchanged. Store the revision with each saved scoresheet, then look the game up with the sheet to show and score it as it was recorded:
+
+```ts
+import { answersCarriedOver, findGame } from "ausfll-score-calculator";
+
+// Saving: record the revision the sheet was scored with
+const current = findGame(season, program);
+save({ answers, revision: current.revision });
+
+// Showing or scoring a saved sheet
+const game = findGame(season, program, { revision: sheet.revision, answers: sheet.answers });
+game.score(sheet.answers);
+
+// Re-scoring an old sheet under the current revision: pre-fill only the answers that still apply
+const prefill = answersCarriedOver(game, current, sheet.answers);
+```
+
+Sheets saved before revisions were recorded can omit `revision`; they are matched to the newest revision that asks every question they answer.
+
 ## Development
 
 Remember to `yarn build` before you `npm publish`!

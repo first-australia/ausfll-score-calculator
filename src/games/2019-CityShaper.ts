@@ -394,6 +394,7 @@ const cityShaper: Game = {
   name: 'City Shaper',
   program: 'FLL_CHALLENGE',
   season: SEASON,
+  revision: 1,
   scores: questions,
   missions,
   answer: (res, q) => answer(res, q),

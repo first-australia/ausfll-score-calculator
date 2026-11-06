@@ -79,6 +79,13 @@ export type Game = {
   name: string;
   season: Season;
   program: Program;
+  /**
+   * Which version of this game's rules and questions this is, counting from 1.
+   * A new revision is published when a rule update changes what a question
+   * means or how it scores. Store it with each scoresheet, so the sheet can be
+   * shown and scored as it was recorded (see `revisionFor`).
+   */
+  revision: number;
   scores: Score[];
   missions: Mission[];
   answer: (res: ScoreAnswer[], q: string) => ScoreAnswer['answer'] | undefined;
