@@ -9,6 +9,8 @@ import {
 } from '../src/games';
 import bioglowFounders from '../src/games/2026-BIOGLOW-founders';
 import bioglowFoundersR1 from '../src/games/2026-BIOGLOW-founders-r1';
+import bioglowFuture from '../src/games/2026-BIOGLOW-future';
+import bioglowFutureR1 from '../src/games/2026-BIOGLOW-future-r1';
 import submerged from '../src/games/2024-Submerged';
 import { buildAnswers } from './helpers';
 
@@ -145,5 +147,33 @@ describe('answersCarriedOver', () => {
     expect(answersCarriedOver(bioglowFounders, bioglowFounders, answers)).toBe(
       answers,
     );
+  });
+});
+
+describe('Future Edition revisions', () => {
+  const FUTURE = 'FLL_CHALLENGE_FUTURE';
+
+  it('lists the Future Edition revisions newest first', () => {
+    expect(revisionsOf(bioglowFuture)).toEqual([
+      bioglowFuture,
+      bioglowFutureR1,
+    ]);
+    expect(bioglowFutureR1.revision).toBe(1);
+  });
+
+  it('finds revision 1 for a sheet recorded with it', () => {
+    expect(findGame(SEASON, FUTURE, { revision: 1 })).toBe(bioglowFutureR1);
+    expect(findGame(SEASON, FUTURE, { revision: 2 })).toBe(bioglowFuture);
+  });
+
+  it('carries every revision 1 answer over; only penalties needs answering', () => {
+    const r1Answers = buildAnswers(bioglowFutureR1, { m01a: 2, m04a: true });
+    const carried = answersCarriedOver(
+      bioglowFutureR1,
+      bioglowFuture,
+      r1Answers,
+    );
+    expect(carried).toEqual(r1Answers);
+    expect(carried.map((a) => a.id)).not.toContain('penalties');
   });
 });

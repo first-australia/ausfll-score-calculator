@@ -1,10 +1,13 @@
 import { Game, Score, ScoreAnswer } from '../game-types';
 import bioglowFounders from './2026-BIOGLOW-founders';
 import bioglowFoundersR1 from './2026-BIOGLOW-founders-r1';
+import bioglowFuture from './2026-BIOGLOW-future';
+import bioglowFutureR1 from './2026-BIOGLOW-future-r1';
 
 /** Earlier revisions of each current game, newest first */
 const earlierRevisions = new Map<Game, Game[]>([
   [bioglowFounders, [bioglowFoundersR1]],
+  [bioglowFuture, [bioglowFutureR1]],
 ]);
 
 /** Every revision of a game, newest (current) first */

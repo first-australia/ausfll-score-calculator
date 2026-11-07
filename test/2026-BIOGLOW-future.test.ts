@@ -149,6 +149,53 @@ describe('Level Up Challenge - Invasive Attack', () => {
   });
 });
 
+describe('Penalties', () => {
+  // 60 points before penalties
+  const scored = { m01a: 3 };
+
+  it('deducts nothing without penalties', () => {
+    expect(scoreWith(bioglowFuture, { ...scored, penalties: '0' })).toBe(60);
+  });
+
+  it('deducts 10 points for the first penalty', () => {
+    expect(
+      scoreWith(bioglowFuture, { ...scored, penalties: '1 (-10 points)' }),
+    ).toBe(50);
+  });
+
+  it('deducts 20 more points for the second penalty', () => {
+    expect(
+      scoreWith(bioglowFuture, { ...scored, penalties: '2 (-30 points)' }),
+    ).toBe(30);
+  });
+
+  it('makes the match score zero from the third penalty', () => {
+    expect(
+      scoreWith(bioglowFuture, {
+        ...scored,
+        penalties: '3+ (match score zero)',
+      }),
+    ).toBe(0);
+  });
+
+  it('does not take the match score below zero', () => {
+    expect(
+      scoreWith(bioglowFuture, { m02a: 1, penalties: '2 (-30 points)' }),
+    ).toBe(0);
+  });
+
+  it('treats a sheet with no penalties answer as having none', () => {
+    const answers = buildAnswers(bioglowFuture, scored).filter(
+      (a) => a.id !== 'penalties',
+    );
+    expect(bioglowFuture.score(answers)).toBe(60);
+  });
+
+  it('is revision 2, after the frozen revision 1 that had no penalties', () => {
+    expect(bioglowFuture.revision).toBe(2);
+  });
+});
+
 describe('Validation - general', () => {
   it('reports unanswered questions', () => {
     const answers = buildAnswers(bioglowFuture);

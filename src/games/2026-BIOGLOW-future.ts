@@ -20,10 +20,22 @@ const questionIds = [
   'm05a',
   'm06a',
   'm06b',
+  'penalties',
   'gp',
 ] as const;
 
 type QuestionId = (typeof questionIds)[number];
+
+/** Answers to the penalties question; each starts with the penalty count */
+const PENALTY_OPTIONS = [
+  '0',
+  '1 (-10 points)',
+  '2 (-30 points)',
+  '3+ (match score zero)',
+];
+
+/** Points deducted for one or two penalties; three or more zero the match */
+const PENALTY_DEDUCTIONS = [0, 10, 30];
 
 const questions: Score<QuestionId>[] = [
   // ---- M01 Mighty Microbiomes ----
@@ -145,6 +157,15 @@ const questions: Score<QuestionId>[] = [
     defaultValue: 0,
     type: 'numeric',
   },
+  // ---- Penalties (rulebook rule 21) ----
+  {
+    id: 'penalties',
+    label: 'Number of interference penalties received?',
+    labelShort: 'Penalties?',
+    options: PENALTY_OPTIONS,
+    defaultValue: PENALTY_OPTIONS[0],
+    type: 'categorical',
+  },
   {
     id: 'gp',
     labelShort: 'GP',
@@ -185,6 +206,10 @@ const missions: Mission[] = [
     prefix: 'm06',
     title: 'Level Up Challenge - Invasive Attack',
     image: pics.m06,
+  },
+  {
+    prefix: 'penalties',
+    title: 'Penalties',
   },
   {
     prefix: 'gp',
@@ -269,14 +294,19 @@ const score = (answers: ScoreAnswer[]): number => {
   _score += Math.min(Math.round(nAnswer(answers, 'm06a')), 5) * 20; // 20 per invasive added pre-match
   _score += nAnswer(answers, 'm06b') * 10; // 10 per invasive delivered to containment
 
-  return _score;
+  // Penalties: 10 points off for the first, 20 more for the second, and the
+  // third makes the match score zero. Deductions do not take a match below
+  // zero. Sheets saved without a penalties answer had none.
+  const penalties = nAnswer(answers, 'penalties');
+  if (penalties >= PENALTY_DEDUCTIONS.length) return 0;
+  return Math.max(0, _score - PENALTY_DEDUCTIONS[penalties]);
 };
 
 const bioglowFuture: Game = {
   name: 'BIOGLOW Future Edition',
   program: PROGRAM,
   season: SEASON,
-  revision: 1,
+  revision: 2,
   scores: questions,
   missions,
   answer: (res, q) => answer(res, q),
